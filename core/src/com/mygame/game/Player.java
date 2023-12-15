@@ -20,7 +20,7 @@ public class Player {
      */
     Player() {
         xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
-        ypos = new int[]{2, -1}; // Default y-coordinates for player positions.
+        ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
        
     }
 

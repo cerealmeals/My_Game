@@ -26,7 +26,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	int screen_Width;
 	int screen_Height;
-	int mapHeight = 6;
+	int mapHeight = 10;
 	int mapWidth = 2*mapHeight;
     Grid grid = new Grid(mapHeight, mapWidth);
     RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
@@ -88,7 +88,7 @@ public class MyGdxGame extends ApplicationAdapter {
                         }
                         if (grid.getGrid()[i][j] == 'b') {
                             batch.draw(path, j * screen_Width / mapWidth, i * screen_Height / mapHeight, screen_Width / mapWidth, screen_Height / mapHeight);
-                            batch.draw(superReward, j * screen_Width / mapWidth, i * screen_Height / mapHeight, screen_Width / mapWidth, screen_Height / mapHeight);
+                            batch.draw(superReward, j * screen_Width / mapWidth  , i * screen_Height / mapHeight, screen_Width / mapWidth, screen_Height / mapHeight);
                         }
                         if (grid.getGrid()[i][j] == 'u') {
                             batch.draw(path, j * screen_Width / mapWidth, i * screen_Height / mapHeight, screen_Width / mapWidth, screen_Height / mapHeight);

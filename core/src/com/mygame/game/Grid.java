@@ -47,10 +47,10 @@ public class Grid {
         //set up random walls and rewards
         //SetUpWalls();
         // create a graph of the paths in the grid
-        //createGraph();
+        createGraph();
 
         // spawn Rewards on the paths
-        //spawnRewards();
+        spawnRewards();
 
         return grid;
     }
@@ -76,14 +76,14 @@ public class Grid {
     }
 
     private void SetUpWalls(){
-        for (int i = 1; i < mapHeight - 2; i++) {
-            for (int j = 2; j < mapWidth - 1; j++) {
-                if (!(i == 1 && j == 2)) { //MAKE INITIAL POSITION CLEAR
-                    if (grid[i - 1][j] == 'w') { // one above is a wall
+        for (int i = 1; i < mapHeight-1; i++) {
+            for (int j = 1; j < mapWidth-1; j++) {
+                if (!(i == 1 && j == 1)) { //MAKE INITIAL POSITION CLEAR
+                    if (grid[i][j-1] == 'w') { // one above is a wall
                         if (rn.nextInt(9) + 1 <= 5) {
                             grid[i][j] = 'w';
-                        }
-                    } else if (!(grid[i - 1][j - 1] == 'w' || grid[i - 1][j + 1] == 'w')) { // walls above on both sides
+                        } // grid[i + 1][j - 1] == 'w' || 
+                    } else if (!(grid[i - 1][j - 1] == 'w' || grid[i-1][j+1] == 'w')) { // walls above on both sides
                         if (rn.nextInt(9) + 1 <= 5) {
                             grid[i][j] = 'w';
                         }
