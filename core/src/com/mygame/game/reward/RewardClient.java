@@ -57,15 +57,24 @@ public class RewardClient {
     /**
      * Generates objects and places them on the game board.
      */
-    public void generateRewards() {
+    public void generateRewards(char[][] grid) {
         // spawn 'number_of_rewards' reward random chance to be different types.
-        for (int i = 0; i < number_of_rewards; i++) {
+        int x1 = random.nextInt(mapWidth-2)+1;
+        int y1 = random.nextInt(mapHeight-3)+1;
+        while((x1==1 && y1 == 1) || (grid[y1][x1] == 'w')){
+            x1 = random.nextInt(mapWidth-2)+1;
+            y1 = random.nextInt(mapHeight-3)+1;
+        }
+        rewards.add(RewardFactory.createReward("Regular", 10, x1, y1));
+
+
+        for (int i = 0; i < number_of_rewards-1; i++) {
             
             int x = random.nextInt(mapWidth-2)+1;
-            int y = random.nextInt(mapHeight-3)+2;
-            while(x==1 && y == 2){
+            int y = random.nextInt(mapHeight-3)+1;
+            while((x==1 && y == 1) || (grid[y][x] == 'w')){
                 x = random.nextInt(mapWidth-2)+1;
-                y = random.nextInt(mapHeight-3)+2;
+                y = random.nextInt(mapHeight-3)+1;
             }
             String type = "";
             int scoreValue = 0;

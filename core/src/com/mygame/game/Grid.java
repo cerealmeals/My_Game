@@ -27,7 +27,6 @@ public class Grid {
             throw new IllegalArgumentException("MapHeight is too small!");
         }
         rewardClient = RewardClient.getInstance(height, width); // Initialize the reward client.
-        rewardClient.generateRewards(); // Generate rewards for the grid.
         mapHeight = height;
         mapWidth = width;
         number_of_vertices = mapHeight*mapWidth;
@@ -45,7 +44,7 @@ public class Grid {
         SetUpBoarder();
 
         //set up random walls and rewards
-        //SetUpWalls();
+        SetUpWalls();
         // create a graph of the paths in the grid
         createGraph();
 
@@ -136,24 +135,26 @@ public class Grid {
      * Spawns rewards on the grid based on reward locations and types.
      */
     private void spawnRewards() {
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-                if (grid[i][j] == 'p') {
-                    Reward reward = rewardClient.getRewardAt(i, j);
+        rewardClient.generateRewards(grid); // Generate rewards for the grid.
+        int length = rewardClient.getRewards().size();
+        for (int i = 0; i < length; i++) {
+            Reward reward = rewardClient.getRewards().get(i);
+                if (grid[reward.getY()][reward.getX()] == 'p') {
+                    
                     if (reward != null) {
                         if(reward instanceof BonusReward){
-                            grid[i][j] = 'b';
+                            grid[reward.getY()][reward.getX()] = 'b';
                         }
                         if(reward instanceof Punishment){
-                            grid[i][j] = 'u';
+                            grid[reward.getY()][reward.getX()] = 'u';
                         }
                         if (reward instanceof GeneralReward){
-                            grid[i][j] = 'r';
+                            grid[reward.getY()][reward.getX()] = 'r';
                             number_of_rewards++;
                         }
                     }
                 }
-            }
+            
         }
     }
 
