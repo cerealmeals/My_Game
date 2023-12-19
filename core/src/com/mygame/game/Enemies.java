@@ -13,7 +13,8 @@ public class Enemies {
     private int xpos; // The x-coordinate of the enemy's position on the grid.
     private int ypos; // The y-coordinate of the enemy's position on the grid.
     private Random rn = new Random(); // Random number generator for enemy movement.
-
+    private int speed = 800;
+    long time = System.currentTimeMillis(); // Time reference variables for enemy movement.
     /**
      * Default constructor for P_Enemies class.
      * Initializes the enemy's health and default position.
@@ -30,22 +31,11 @@ public class Enemies {
      * @param hp     The health of the enemy.
      * @param grid2  The game grid where the enemy is spawned.
      */
-    public Enemies(int hp, Grid grid2){
+    public Enemies(int hp, Grid grid2, int speed){
+        this.speed=speed;
         health = hp; // Set the enemy's health.
         this.spawn(grid2); // Spawn the enemy on the grid.
     }
-
-    // Time reference variables for enemy movement.
-    long time = System.currentTimeMillis();
-
-    /**
-     * Controls the movement behavior of the enemies.
-     *
-     * @param player  The player object in the game.
-     * @param grid2   The game grid where the enemy moves.
-     */
-    
-
 
     /**
      * Spawns the enemy at a random valid position on the grid.
@@ -53,16 +43,21 @@ public class Enemies {
      * @param grid2  The game grid where the enemy is spawned.
      */
     private void spawn(Grid grid2){
-        xpos = rn.nextInt(grid2.getMapWidth()-7)+6;
-        ypos = rn.nextInt(grid2.getMapHeight()-7)+6;
-        if (grid2.getGrid()[xpos][ypos] == 'w' || grid2.getGrid()[xpos][ypos] == 'm')
+        xpos = rn.nextInt(grid2.getMapWidth()-3)+2; 
+        ypos = rn.nextInt(grid2.getMapHeight()-3)+1;
+        if (grid2.getGrid()[ypos][xpos] == 'w' || grid2.getGrid()[ypos][xpos] == 'm')
             spawn(grid2);
     }
 
-    
+    /**
+     * Controls the movement behavior of the enemies.
+     *
+     * @param player  The player object in the game.
+     * @param grid2   The game grid where the enemy moves.
+     */
     public boolean enemiesMove(Player player, Grid grid){
 
-        if (System.currentTimeMillis()-time >= 800 ){
+        if (System.currentTimeMillis()-time >= speed ){
             time = System.currentTimeMillis();
             
             int current_Position = ypos*grid.getMapWidth() + xpos;
@@ -165,5 +160,8 @@ public class Enemies {
         return health;
     }
 
+    public void setHealth(int hp){
+        this.health = hp;
+    }
 }
     

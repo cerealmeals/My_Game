@@ -75,7 +75,7 @@ public class Grid {
     }
 
     private void SetUpWalls(){
-        for (int i = 1; i < mapHeight-1; i++) {
+        for (int i = 2; i < mapHeight-3; i++) {
             for (int j = 1; j < mapWidth-1; j++) {
                 if (!(i == 1 && j == 1)) { //MAKE INITIAL POSITION CLEAR
                     if (grid[i][j-1] == 'w') { // one above is a wall
@@ -136,25 +136,23 @@ public class Grid {
      */
     private void spawnRewards() {
         rewardClient.generateRewards(grid); // Generate rewards for the grid.
-        int length = rewardClient.getRewards().size();
-        for (int i = 0; i < length; i++) {
+        
+        for (int i = 0; i < rewardClient.getRewards().size(); i++) {
             Reward reward = rewardClient.getRewards().get(i);
-                if (grid[reward.getY()][reward.getX()] == 'p') {
-                    
-                    if (reward != null) {
-                        if(reward instanceof BonusReward){
-                            grid[reward.getY()][reward.getX()] = 'b';
-                        }
-                        if(reward instanceof Punishment){
-                            grid[reward.getY()][reward.getX()] = 'u';
-                        }
-                        if (reward instanceof GeneralReward){
-                            grid[reward.getY()][reward.getX()] = 'r';
-                            number_of_rewards++;
-                        }
-                    }
+
+            if (grid[reward.getY()][reward.getX()] == 'p') {
+                
+                if(reward instanceof BonusReward){
+                    grid[reward.getY()][reward.getX()] = 'b';
                 }
-            
+                if(reward instanceof Punishment){
+                    grid[reward.getY()][reward.getX()] = 'u';
+                }
+                if (reward instanceof GeneralReward){
+                    grid[reward.getY()][reward.getX()] = 'r';
+                    number_of_rewards++;
+                }                
+            }            
         }
     }
 
@@ -196,8 +194,8 @@ public class Grid {
      * @param ypos  The y-coordinate of the cell.
      * @param value The value to set in the cell.
      */
-    void setGrid(int xpos, int ypos, char value) {
-        grid[xpos][ypos] = value;
+    void setGrid(int ypos, int xpos, char value) {
+        grid[ypos][xpos] = value;
     }
 
     ArrayList<ArrayList<Integer>> getGraph(){

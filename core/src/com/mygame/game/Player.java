@@ -32,22 +32,21 @@ public class Player {
      * @param grid      The game grid where the player moves.
      */
 
-    void movePlayer(boolean keyPressed, char key, Grid grid) {
-        if (keyPressed && (keyRel == 1)) {
-            keyRel = 0;
+    void movePlayer(char key, Grid grid) {
+
             // Moves the player according to the key input after checking for walls
-            if (key == 'd' && grid.getGrid()[xpos[0] + 1][ypos[0]] != 'w') {
+            if (key == 'd' && grid.getGrid()[ypos[0]][xpos[0] + 1] != 'w') {
                 storePrev();
                 xpos[0] += 1;
-            } else if (key == 'a' && grid.getGrid()[xpos[0] - 1][ypos[0]] != 'w') {
+            } else if (key == 'a' && grid.getGrid()[ypos[0]][xpos[0] - 1] != 'w') {
                 storePrev();
                 xpos[0] -= 1;
-            } else if (key == 's' && grid.getGrid()[xpos[0]][ypos[0] + 1] != 'w') {
-                storePrev();
-                ypos[0] += 1;
-            } else if (key == 'w' && grid.getGrid()[xpos[0]][ypos[0] - 1] != 'w') {
+            } else if (key == 's' && grid.getGrid()[ypos[0] - 1][xpos[0]] != 'w') {
                 storePrev();
                 ypos[0] -= 1;
+            } else if (key == 'w' && grid.getGrid()[ypos[0] + 1][xpos[0]] != 'w') {
+                storePrev();
+                ypos[0] += 1;
             }
 
             /**
@@ -55,7 +54,6 @@ public class Player {
             * Sets the reward character to a path after it is collected
             */ 
             interact_with_reward(grid);
-        }
     }
 
     /**
@@ -63,7 +61,7 @@ public class Player {
     * Sets the reward character to a path after it is collected
     */ 
     private void interact_with_reward(Grid grid){
-        char cellType = grid.getGrid()[xpos[0]][ypos[0]];
+        char cellType = grid.getGrid()[ypos[0]][xpos[0]];
             if (cellType == 'b' || cellType == 'r' || cellType == 'u') {
                 if(cellType == 'r'){
                     rewards++;
@@ -76,9 +74,9 @@ public class Player {
                     explosion = true;
                 }
                 RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
-                score += rewardClient.collectReward(xpos[0], ypos[0]);
+                score += rewardClient.collectReward( ypos[0], xpos[0]);
                 // Reset the cell to a path cell.
-                grid.setGrid(xpos[0], ypos[0], 'p');
+                grid.setGrid(ypos[0], xpos[0],  'p');
             }
     }
 

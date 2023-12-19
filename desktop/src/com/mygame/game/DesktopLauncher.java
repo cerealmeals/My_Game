@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("My-Game");
 		config.setResizable(false); 
-		config.setWindowedMode(800, 400);
+		config.setWindowedMode(1400, 700);
 		new Lwjgl3Application(new GameLogic(), config);
 	}
 }
