@@ -47,7 +47,7 @@ public class Grid {
         SetUpWalls();
         // create a graph of the paths in the grid
         createGraph();
-        printGraph();
+        //printGraph();
         
         // spawn Rewards on the paths
         spawnRewards();
@@ -55,7 +55,7 @@ public class Grid {
         return grid;
     }
 
-    private void printGraph() {
+    /*private void printGraph() {
         for(int i = 0; i < number_of_vertices; i++){
             System.out.print(i + ": ");
             for(int j = 0; j < graph.get(i).size(); j++){
@@ -63,7 +63,7 @@ public class Grid {
             }
             System.out.println("");
         }
-    }
+    }*/
 
     /**
      * Set up boarder of grid

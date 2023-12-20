@@ -62,7 +62,6 @@ public class GameScreen implements Screen{
 		drawplayer();
         drawEnemies();
 		game.batch.end();
-        end();
         imputs();
         EnemieMovement();
     }
@@ -109,9 +108,6 @@ public class GameScreen implements Screen{
         }
     }
 
-    private void end(){
-
-    }
     private void imputs(){
         playerMovement();
     }
@@ -119,41 +115,49 @@ public class GameScreen implements Screen{
     private void playerMovement(){
         if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A)){
             game.player.movePlayer('a', game.grid);
-            enemyCheck();
-            ExitCheck();
+            afterPlayerMovement();
         }
         if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D)){
             game.player.movePlayer('d', game.grid);
-            enemyCheck();
-            ExitCheck();
+            afterPlayerMovement();
         }
         if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)){
             game.player.movePlayer('w', game.grid);
-            enemyCheck();
-            ExitCheck();
+            afterPlayerMovement();
         }
         if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)){
             game.player.movePlayer('s', game.grid);
-            enemyCheck();
-            ExitCheck();
+            afterPlayerMovement();
         }
     }
 
+    private void afterPlayerMovement(){
+        enemyCheck();
+        PlaceExit();
+        ExitCheck();
+    }
     private void enemyCheck(){
         for(int i = 0; i < game.current_number_of_enemies; i++){
             if(game.enemies.get(i).getXPos() == game.player.getXPos()[0] && game.enemies.get(i).getYPos() == game.player.getYPos()[0]){
                 System.out.println("game over you touched an enemy - enemyCheck");
+                GameOver();
             }
         }
     }
 
-    private void ExitCheck(){
+    private void PlaceExit(){
         if(game.grid.getNumRewards() == game.player.getRewards()){
             // place an exit on the map
             game.grid.getGrid()[game.mapHeight-2][game.mapWidth-2] = 'e'; 
         }
     }
 
+    private void ExitCheck(){
+        if(game.grid.getGrid()[game.player.getYPos()[0]][game.player.getXPos()[0]] == 'e'){
+            System.out.println("You win new level - ExitCheck");
+            NextLevel();
+        }
+    }
     private void EnemieMovement() {
         int i = 0;
         while(i < game.current_number_of_enemies){
@@ -166,10 +170,18 @@ public class GameScreen implements Screen{
                     break;
                 case 2:
                     System.out.println("game over you touched an enemy - enemyMovement");
-                    end();
+                    GameOver();
             } 
             i++; 
         }
+    }
+
+    private void GameOver(){
+
+    }
+
+    private void NextLevel(){
+
     }
 
     @Override
