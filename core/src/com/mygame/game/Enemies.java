@@ -55,7 +55,7 @@ public class Enemies {
      * @param player  The player object in the game.
      * @param grid2   The game grid where the enemy moves.
      */
-    public boolean enemiesMove(Player player, Grid grid){
+    public int enemiesMove(Player player, Grid grid){
 
         if (System.currentTimeMillis()-time >= speed ){
             time = System.currentTimeMillis();
@@ -80,22 +80,31 @@ public class Enemies {
             else{
                 ypos--;
             }
+
+            // check to see if player is there.
+            int i = 0;
+            if(ypos == player.getYPos()[i] && xpos == player.getXPos()[i]){
+                return 2;
+            }
+
             // check to see if flames are there.
-            for(int i = 1; i< player.getTrailLength(); i++){
+            for(; i< player.getTrailLength(); i++){
                 
                 if(ypos == player.getYPos()[i] && xpos == player.getXPos()[i]){
                     // if flames are there take damage.
-                    health--;
+                    health -= player.getFlameDamage();
+                    // maybe only get damaged once
+                    // i = player.getTrailLength();
                 }
             }
             //check if health is zero
             if(health <= 0){
-                return false;
+                return 1;
             }
         }
         
         
-        return  true;
+        return 0;
         
     }
 

@@ -155,10 +155,20 @@ public class GameScreen implements Screen{
     }
 
     private void EnemieMovement() {
-        for(int i = 0; i < game.current_number_of_enemies; i++){
-            if(!game.enemies.get(i).enemiesMove(game.player, game.grid)){
-                game.enemies.remove(game.enemies.get(i));
-            }
+        int i = 0;
+        while(i < game.current_number_of_enemies){
+            int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
+            // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player
+            switch(flag){
+                case 1:
+                    game.enemies.remove(game.enemies.get(i));
+                    game.current_number_of_enemies--;
+                    break;
+                case 2:
+                    System.out.println("game over you touched an enemy - enemyMovement");
+                    end();
+            } 
+            i++; 
         }
     }
 

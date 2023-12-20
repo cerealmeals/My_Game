@@ -47,11 +47,22 @@ public class Grid {
         SetUpWalls();
         // create a graph of the paths in the grid
         createGraph();
-
+        printGraph();
+        
         // spawn Rewards on the paths
         spawnRewards();
 
         return grid;
+    }
+
+    private void printGraph() {
+        for(int i = 0; i < number_of_vertices; i++){
+            System.out.print(i + ": ");
+            for(int j = 0; j < graph.get(i).size(); j++){
+                System.out.print(graph.get(i).get(j) + " ");
+            }
+            System.out.println("");
+        }
     }
 
     /**
@@ -104,25 +115,25 @@ public class Grid {
         }
         int count = 0;
         // Step through the grid and find all paths
-        for (int j = 0; j < mapWidth; j++) {
-            for (int i = 0; i < mapHeight; i++) {
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidth; j++) {
                 //System.out.println("i = " + i + " j = " + j + grid[i][j]);
                 if (grid[i][j] == 'p') {  // if it is a path check if it is adjacent
                     
                     if (grid[i + 1][j] == 'p') { // if there is a path to the right
-                        graph.get(count).add(count + 1);
-                        //printGraph();
-                    }
-                    if (grid[i - 1][j] == 'p') {  // if there is a path to the left
-                        graph.get(count).add(count - 1);
-                        //printGraph();
-                    }
-                    if (grid[i][j + 1] == 'p') {    // if there is a path to the below
                         graph.get(count).add(count + mapWidth);
                         //printGraph();
                     }
-                    if (grid[i][j - 1] == 'p') {    // if there is a path to the above
+                    if (grid[i - 1][j] == 'p') {  // if there is a path to the left
                         graph.get(count).add(count - mapWidth);
+                        //printGraph();
+                    }
+                    if (grid[i][j + 1] == 'p') {    // if there is a path to the below
+                        graph.get(count).add(count + 1);
+                        //printGraph();
+                    }
+                    if (grid[i][j - 1] == 'p') {    // if there is a path to the above
+                        graph.get(count).add(count - 1);
                         //printGraph();
                     }
                 }

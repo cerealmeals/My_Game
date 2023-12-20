@@ -14,6 +14,7 @@ public class Player {
     private int score = 0; // Player's score in the game.
     private int rewards = 0; // Count of rewards collected by the player.
     private boolean explosion = false;
+    private int FlameDamage = 1;
     /**
      * Default constructor for Player class.
      * Initializes player's initial position and other attributes.
@@ -197,5 +198,13 @@ public class Player {
 
     boolean getExplosion(){
         return explosion;
+    }
+
+    int getFlameDamage(){
+        return FlameDamage;    
+    }
+
+    void setFlameDamage(int damage){
+        FlameDamage = damage;
     }
 }

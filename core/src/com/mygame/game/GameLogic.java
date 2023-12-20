@@ -12,7 +12,7 @@ public class GameLogic extends Game {
 	SpriteBatch batch;
 	
 	int speed = 1000;
-	int mapHeight = 8;
+	int mapHeight = 10;
 	int mapWidth = 2*mapHeight; 
     Grid grid = new Grid(mapHeight, mapWidth);
     RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
@@ -26,7 +26,7 @@ public class GameLogic extends Game {
 	long time;
     long time_paused; */ 
 	int level = 1;
-    int enemy_HP = 4;
+    int enemy_HP = 1;
     int initial_number_of_enemies = 4;
     int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
     ArrayList<Enemies> enemies = new ArrayList<Enemies>(); // Stores all the enemies in one data structure
