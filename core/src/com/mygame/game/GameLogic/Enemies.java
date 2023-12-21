@@ -1,4 +1,4 @@
-package com.mygame.game;
+package com.mygame.game.GameLogic;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

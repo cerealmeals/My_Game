@@ -1,4 +1,4 @@
-package com.mygame.game;
+package com.mygame.game.Screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -6,11 +6,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygame.game.GameLogic.Enemies;
+import com.mygame.game.GameLogic.GameLogic;
 import com.badlogic.gdx.Input.Keys;
 
 public class GameScreen implements Screen{
 
-    GameLogic game;
+    final GameLogic game;
 
     int texture_Width;
 	int texture_Height;

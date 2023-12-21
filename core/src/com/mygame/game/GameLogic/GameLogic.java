@@ -1,22 +1,24 @@
-package com.mygame.game;
+package com.mygame.game.GameLogic;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
+import com.mygame.game.Screens.MainMenuScreen;
 import com.mygame.game.reward.RewardClient;
 
 
 public class GameLogic extends Game {
 
-	SpriteBatch batch;
+	public SpriteBatch batch;
+	public BitmapFont font;
 	
-	int speed = 1000;
-	int mapHeight = 10;
-	int mapWidth = 2*mapHeight; 
-    Grid grid = new Grid(mapHeight, mapWidth);
-    RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
-    Player player = new Player();
+	public int speed = 1000;
+	public int mapHeight = 10;
+	public int mapWidth = 2*mapHeight; 
+    public Grid grid = new Grid(mapHeight, mapWidth);
+    public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
+    public Player player = new Player();
 
     /*int released = 1; // Used as a boolean to control key releases
     int gameStarted = 0; // Used as a boolean variable to determine whether the game has started
@@ -25,17 +27,18 @@ public class GameLogic extends Game {
     int gameOver = 0; // Used as a boolean to see if the game is over
 	long time;
     long time_paused; */ 
-	int level = 1;
-    int enemy_HP = 1;
-    int initial_number_of_enemies = 4;
-    int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
-    ArrayList<Enemies> enemies = new ArrayList<Enemies>(); // Stores all the enemies in one data structure
+	public int level = 1;
+    public int enemy_HP = 1;
+    public int initial_number_of_enemies = 4;
+    public int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
+    public ArrayList<Enemies> enemies = new ArrayList<Enemies>(); // Stores all the enemies in one data structure
     
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		this.setScreen(new GameScreen(this));
+		font = new BitmapFont();
+		this.setScreen(new MainMenuScreen(this));
 		
 	}
 

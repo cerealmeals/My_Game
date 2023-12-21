@@ -1,4 +1,4 @@
-package com.mygame.game;
+package com.mygame.game.GameLogic;
 
 import com.mygame.game.reward.RewardClient;
 
@@ -192,7 +192,7 @@ public class Player {
      *
      * @return The trail length.
      */
-    int getTrailLength() {
+    public int getTrailLength() {
         return trailLength;
     }
 
