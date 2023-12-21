@@ -172,7 +172,7 @@ public class Grid {
      *
      * @return The number of rewards on the grid.
      */
-    int getNumRewards() {
+    public int getNumRewards() {
         return number_of_rewards;
     }
 
@@ -181,11 +181,11 @@ public class Grid {
      *
      * @return The size of the map.
      */
-    int getMapHeight() {
+    public int getMapHeight() {
         return mapHeight;
     }
 
-    int getMapWidth() {
+    public int getMapWidth() {
         return mapWidth;
     }
 
@@ -194,7 +194,7 @@ public class Grid {
      *
      * @return The 2D grid representing the game map.
      */
-    char[][] getGrid() {
+    public char[][] getGrid() {
         return grid;
     }
 
@@ -205,15 +205,15 @@ public class Grid {
      * @param ypos  The y-coordinate of the cell.
      * @param value The value to set in the cell.
      */
-    void setGrid(int ypos, int xpos, char value) {
+    public void setGrid(int ypos, int xpos, char value) {
         grid[ypos][xpos] = value;
     }
 
-    ArrayList<ArrayList<Integer>> getGraph(){
+    public ArrayList<ArrayList<Integer>> getGraph(){
         return graph;
     }
 
-    int getNumber_of_vertices(){
+    public int getNumber_of_vertices(){
         return number_of_vertices;
     }
 }

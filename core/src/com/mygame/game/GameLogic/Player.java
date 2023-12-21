@@ -19,7 +19,7 @@ public class Player {
      * Default constructor for Player class.
      * Initializes player's initial position and other attributes.
      */
-    Player() {
+    public Player() {
         xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
         ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
        
@@ -33,7 +33,7 @@ public class Player {
      * @param grid      The game grid where the player moves.
      */
 
-    void movePlayer(char key, Grid grid) {
+    public void movePlayer(char key, Grid grid) {
 
             // Moves the player according to the key input after checking for walls
             if (key == 'd' && grid.getGrid()[ypos[0]][xpos[0] + 1] != 'w') {
@@ -85,7 +85,7 @@ public class Player {
     /**
      * Stores previous positions of the player.
      */
-    void storePrev() {
+    private void storePrev() {
         int tempx[] = new int[trailLength];
         int tempy[] = new int[trailLength];
         System.arraycopy(xpos, 0, tempx, 0, xpos.length);
@@ -127,7 +127,7 @@ public class Player {
      *
      * @return The array of x-coordinates.
      */
-    int[] getXPos() {
+    public int[] getXPos() {
         return xpos;
     }
 
@@ -137,7 +137,7 @@ public class Player {
      * @param value The value to set.
      * @param index The index where the value is to be set.
      */
-    void setXPos(int value, int index) {
+    public void setXPos(int value, int index) {
         xpos[index] = value;
     }
 
@@ -146,7 +146,7 @@ public class Player {
      *
      * @return The array of y-coordinates.
      */
-    int[] getYPos() {
+    public int[] getYPos() {
         return ypos;
     }
 
@@ -156,7 +156,7 @@ public class Player {
      * @param value The value to set.
      * @param index The index where the value is to be set.
      */
-    void setYPos(int value, int index) {
+    public void setYPos(int value, int index) {
         ypos[index] = value;
     }
 
@@ -165,7 +165,7 @@ public class Player {
      *
      * @return The player's score.
      */
-    int getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -174,7 +174,7 @@ public class Player {
      *
      * @param value The value to set.
      */
-    void setScore(int value) {
+    public void setScore(int value) {
         score = value;
     }
 
@@ -183,7 +183,7 @@ public class Player {
      *
      * @return The number of rewards.
      */
-    int getRewards() {
+    public int getRewards() {
         return rewards;
     }
 
@@ -196,15 +196,15 @@ public class Player {
         return trailLength;
     }
 
-    boolean getExplosion(){
+    public boolean getExplosion(){
         return explosion;
     }
 
-    int getFlameDamage(){
+    public int getFlameDamage(){
         return FlameDamage;    
     }
 
-    void setFlameDamage(int damage){
+    public void setFlameDamage(int damage){
         FlameDamage = damage;
     }
 }
