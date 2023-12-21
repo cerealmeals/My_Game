@@ -2,21 +2,18 @@ package com.mygame.game.Screens;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygame.game.GameLogic.Enemies;
 import com.mygame.game.GameLogic.GameLogic;
 import com.badlogic.gdx.Input.Keys;
 
-public class GameScreen implements Screen{
-
-    final GameLogic game;
+public class GameScreen extends SuperScreen{
 
     int texture_Width;
 	int texture_Height;
-    OrthographicCamera camera;
+    
 	Texture wall;
 	Texture path;
 	Texture reward;
@@ -29,7 +26,7 @@ public class GameScreen implements Screen{
 
 
     public GameScreen(final GameLogic game){
-        this.game = game;
+        super(game);
         
         wall = new Texture("wall.png");
 		path = new Texture("path.png");
@@ -41,8 +38,6 @@ public class GameScreen implements Screen{
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
         enemy = new Texture("enemy.png");
 		
-        camera = new OrthographicCamera();
-		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
     @Override
     public void show() {

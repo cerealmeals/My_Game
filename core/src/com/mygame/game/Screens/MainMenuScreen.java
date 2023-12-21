@@ -2,23 +2,14 @@ package com.mygame.game.Screens;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygame.game.GameLogic.GameLogic;
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen extends SuperScreen {
 
-    final GameLogic game;
-
-    OrthographicCamera camera;
-
-
-    public MainMenuScreen(final GameLogic game){
-        this.game = game;
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    public MainMenuScreen(GameLogic game) {
+        super(game);
+        
     }
 
     @Override
