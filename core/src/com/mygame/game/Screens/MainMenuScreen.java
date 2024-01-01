@@ -9,19 +9,19 @@ import com.badlogic.gdx.graphics.Texture;
 public class MainMenuScreen extends SuperScreen {
 
     Texture play;
-    Texture settings;
-    Texture quit;
     Texture play_c;
+    Texture settings;
     Texture settings_c;
+    Texture quit;
     Texture quit_c;
 
     public MainMenuScreen(GameLogic game) {
         super(game);
         play = new Texture("buttons/Large Buttons/Large Buttons/Play Button.png");
-        settings = new Texture("buttons/Large Buttons/Large Buttons/Settings Button.png");
-        quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
         play_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Play col_Button.png");
+        settings = new Texture("buttons/Large Buttons/Large Buttons/Settings Button.png");
         settings_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Settings col_Button.png");
+        quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
         quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");
     }
 
@@ -37,46 +37,20 @@ public class MainMenuScreen extends SuperScreen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 
-        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int quit_y = 0;
-
-        int play_y = Gdx.graphics.getHeight() - play.getHeight();
-
 		game.batch.begin();
 		
-        
+        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
+        int play_y = Gdx.graphics.getHeight() - play.getHeight();
+        //play button
+        draw_Button(play, play_c, center_x, play_y, new GameScreenCommand());
 
-        if(Gdx.input.getX() > center_x && 
-        Gdx.input.getX() < center_x + play.getWidth()&& 
-        Gdx.input.getY() > 0 && 
-        Gdx.input.getY() < play.getHeight())
-        {
-            game.batch.draw(play_c, center_x, play_y);
-            if (Gdx.input.isTouched()) {
-			    game.setScreen(new GameScreen(game));
-			    dispose();
-		    }
-        }
-        else{
-            game.batch.draw(play, center_x, play_y);
-            
-        }
+        //setting button
 
-        if(Gdx.input.getX() > center_x && 
-        Gdx.input.getX() < center_x + quit.getWidth() && 
-        Gdx.input.getY() < Gdx.graphics.getHeight() && 
-        Gdx.input.getY() > Gdx.graphics.getHeight() - quit.getHeight())
-        {
-            game.batch.draw(quit_c, center_x, quit_y);
-            if (Gdx.input.isTouched()) {
-			    Gdx.app.exit();
-            }
-        }
-        else{
-            game.batch.draw(quit, center_x, quit_y);  
-        }
+        int quit_y = 0;
+        //quit button
+        draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
 
-		game.batch.end();
+        game.batch.end();
 
     }
 
@@ -89,5 +63,6 @@ public class MainMenuScreen extends SuperScreen {
         settings.dispose();
         settings_c.dispose();
     }
+    
     
 }

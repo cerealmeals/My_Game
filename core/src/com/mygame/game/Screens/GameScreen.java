@@ -168,17 +168,20 @@ public class GameScreen extends SuperScreen{
                 case 2:
                     System.out.println("game over you touched an enemy - enemyMovement");
                     GameOver();
+                    break;
             } 
             i++; 
         }
     }
 
     private void GameOver(){
-
+        game.setScreen(new GameOverScreen(this.game));
+        dispose();
     }
 
     private void NextLevel(){
-
+        game.setScreen(new LevelOverScreen(this.game));
+        dispose();
     }
 
     @Override

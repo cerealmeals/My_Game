@@ -6,7 +6,12 @@ public class LevelOverScreen extends SuperScreen {
 
     public LevelOverScreen(GameLogic game) {
         super(game);
+
     }
 
+    @Override
+    public void render(float delta) {
+
+    }
     
 }
