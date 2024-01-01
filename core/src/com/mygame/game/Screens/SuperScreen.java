@@ -102,4 +102,13 @@ public class SuperScreen implements Screen {
         }
     }
     
+      public class NewGameCommand implements Command{
+        public void execute(){
+            if (Gdx.input.isTouched()) {
+                game.NewGame();
+			    game.setScreen(new GameScreen(game));
+			    dispose();
+		    }
+        }
+    }
 }

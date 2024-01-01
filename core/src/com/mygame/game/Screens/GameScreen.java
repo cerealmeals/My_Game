@@ -166,7 +166,7 @@ public class GameScreen extends SuperScreen{
                     game.current_number_of_enemies--;
                     break;
                 case 2:
-                    System.out.println("game over you touched an enemy - enemyMovement");
+                    System.out.println("game over an enemy touched you - enemyMovement");
                     GameOver();
                     break;
             } 

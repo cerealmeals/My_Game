@@ -35,8 +35,8 @@ public class GameOverScreen extends SuperScreen {
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
         int New_game_y = Gdx.graphics.getHeight() - New_game.getHeight();
         //New_game button
-        draw_Button(New_game, New_game_c, center_x, New_game_y, new GameScreenCommand());
-        
+        draw_Button(New_game, New_game_c, center_x, New_game_y, new NewGameCommand());
+
         //setting button
 
         int quit_y = 0;
@@ -45,6 +45,14 @@ public class GameOverScreen extends SuperScreen {
 
         game.batch.end();
 
+    }
+
+    @Override
+    public void dispose() {
+        New_game.dispose();
+        New_game_c.dispose();
+        quit.dispose();
+        quit_c.dispose();
     }
     
 }

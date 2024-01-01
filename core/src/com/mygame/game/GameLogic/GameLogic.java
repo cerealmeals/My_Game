@@ -47,6 +47,22 @@ public class GameLogic extends Game {
 		initial_number_of_enemies += 2;
 		rewardClient.setNumRewards(rewardClient.getNumRewards() + 5);
 		speed -= 50;
+		int temp = player.getScore();
+		player = new Player();
+		player.setScore(temp);
+		enemies.clear();
+		grid = new Grid(mapHeight, mapWidth);
+	}
+
+	public void NewGame(){
+		level = 1;
+		initial_number_of_enemies = 4;
+		enemies.clear();
+		rewardClient.clear();
+		rewardClient.setNumRewards(15);
+		speed = 1000;
+		player = new Player();
+		grid = new Grid(mapHeight, mapWidth);
 	}
 
 	@Override
