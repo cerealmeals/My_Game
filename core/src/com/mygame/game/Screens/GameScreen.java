@@ -104,6 +104,7 @@ public class GameScreen extends SuperScreen{
 
     private void imputs(){
         playerMovement();
+        Pause();
     }
 
     private void playerMovement(){
@@ -122,6 +123,12 @@ public class GameScreen extends SuperScreen{
         if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)){
             game.player.movePlayer('s', game.grid);
             afterPlayerMovement();
+        }
+    }
+
+    private void Pause(){
+        if(Gdx.input.isKeyJustPressed(Keys.P)||Gdx.input.isKeyJustPressed(Keys.ESCAPE)||Gdx.input.isKeyJustPressed(Keys.SPACE)){
+            game.setScreen(new PauseScreen(this.game));
         }
     }
 
@@ -179,26 +186,6 @@ public class GameScreen extends SuperScreen{
     private void NextLevel(){
         game.setScreen(new LevelOverScreen(this.game));
         dispose();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        
-    }
-
-    @Override
-    public void pause() {
-        
-    }
-
-    @Override
-    public void resume() {
-       
-    }
-
-    @Override
-    public void hide() {
-        
     }
 
     @Override
