@@ -129,6 +129,7 @@ public class GameScreen extends SuperScreen{
     private void Pause(){
         if(Gdx.input.isKeyJustPressed(Keys.P)||Gdx.input.isKeyJustPressed(Keys.ESCAPE)||Gdx.input.isKeyJustPressed(Keys.SPACE)){
             game.setScreen(new PauseScreen(this.game));
+            dispose();
         }
     }
 
@@ -140,7 +141,7 @@ public class GameScreen extends SuperScreen{
     private void enemyCheck(){
         for(int i = 0; i < game.current_number_of_enemies; i++){
             if(game.enemies.get(i).getXPos() == game.player.getXPos()[0] && game.enemies.get(i).getYPos() == game.player.getYPos()[0]){
-                System.out.println("game over you touched an enemy - enemyCheck");
+                //System.out.println("game over you touched an enemy - enemyCheck");
                 GameOver();
             }
         }
@@ -155,7 +156,7 @@ public class GameScreen extends SuperScreen{
 
     private void ExitCheck(){
         if(game.grid.getGrid()[game.player.getYPos()[0]][game.player.getXPos()[0]] == 'e'){
-            System.out.println("You win new level - ExitCheck");
+            //System.out.println("You win new level - ExitCheck");
             NextLevel();
         }
     }
@@ -170,7 +171,7 @@ public class GameScreen extends SuperScreen{
                     game.current_number_of_enemies--;
                     break;
                 case 2:
-                    System.out.println("game over an enemy touched you - enemyMovement");
+                    //System.out.println("game over an enemy touched you - enemyMovement");
                     GameOver();
                     break;
             } 

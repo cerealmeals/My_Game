@@ -32,7 +32,7 @@ public class LevelOverScreen extends SuperScreen {
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
         int Continue_y = Gdx.graphics.getHeight() - Continue.getHeight();
         //Continue button
-        draw_Button(Continue, Continue_c, center_x, Continue_y, new NewGameCommand());
+        draw_Button(Continue, Continue_c, center_x, Continue_y, new NewLevelCommand());
 
         //setting button
 

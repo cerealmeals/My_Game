@@ -14,7 +14,7 @@ public class GameLogic extends Game {
 	public BitmapFont font;
 	
 	public int speed = 1000;
-	public int mapHeight = 6;
+	public int mapHeight = 11;
 	public int mapWidth = 2*mapHeight; 
     public Grid grid = new Grid(mapHeight, mapWidth);
     public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);

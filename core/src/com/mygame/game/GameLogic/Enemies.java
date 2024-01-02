@@ -45,7 +45,7 @@ public class Enemies {
     private void spawn(Grid grid2){
         xpos = rn.nextInt(grid2.getMapWidth()-3)+2; 
         ypos = rn.nextInt(grid2.getMapHeight()-3)+1;
-        if (grid2.getGrid()[ypos][xpos] == 'w' || grid2.getGrid()[ypos][xpos] == 'm')
+        if (grid2.getGrid()[ypos][xpos] == 'w' || grid2.getGrid()[ypos][xpos] == 'm'||(xpos < 5 && ypos < 5))
             spawn(grid2);
     }
 
