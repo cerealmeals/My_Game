@@ -14,7 +14,7 @@ public class GameLogic extends Game {
 	public BitmapFont font;
 	
 	public int speed = 1000;
-	public int mapHeight = 10;
+	public int mapHeight = 6;
 	public int mapWidth = 2*mapHeight; 
     public Grid grid = new Grid(mapHeight, mapWidth);
     public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
@@ -38,11 +38,15 @@ public class GameLogic extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		for(int i = 0; i < initial_number_of_enemies; i++){
+            enemies.add(new Enemies(enemy_HP, grid, speed));
+        }
 		this.setScreen(new MainMenuScreen(this));
 		
 	}
 
-	public void IncreaseLevel(){
+	public void LevelUp(){
+		grid = new Grid(mapHeight, mapWidth);
 		level++;
 		initial_number_of_enemies += 2;
 		rewardClient.setNumRewards(rewardClient.getNumRewards() + 5);
@@ -50,21 +54,27 @@ public class GameLogic extends Game {
 		int temp = player.getScore();
 		player = new Player();
 		player.setScore(temp);
-		enemies.clear();
-		grid = new Grid(mapHeight, mapWidth);
+		resetEnemies();
 	}
 
 	public void NewGame(){
+		grid = new Grid(mapHeight, mapWidth);
 		level = 1;
 		initial_number_of_enemies = 4;
-		enemies.clear();
+		resetEnemies();
 		rewardClient.clear();
 		rewardClient.setNumRewards(15);
 		speed = 1000;
 		player = new Player();
-		grid = new Grid(mapHeight, mapWidth);
 	}
 
+	private void resetEnemies(){
+		enemies.clear();
+		for(int i = 0; i < initial_number_of_enemies; i++){
+            enemies.add(new Enemies(enemy_HP, grid, speed));
+        }
+		current_number_of_enemies = initial_number_of_enemies;
+	}
 	@Override
 	public void render () {
 		super.render();

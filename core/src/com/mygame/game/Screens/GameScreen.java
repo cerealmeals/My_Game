@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygame.game.GameLogic.Enemies;
 import com.mygame.game.GameLogic.GameLogic;
 import com.badlogic.gdx.Input.Keys;
 
@@ -41,9 +40,7 @@ public class GameScreen extends SuperScreen{
     }
     @Override
     public void show() {
-        for(int i = 0; i < game.initial_number_of_enemies; i++){
-            game.enemies.add(new Enemies(game.enemy_HP, game.grid, game.speed));
-        }
+        
     }
 
     @Override
