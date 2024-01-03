@@ -59,6 +59,8 @@ public class RewardClient {
      */
     public void generateRewards(char[][] grid) {
         // spawn 'number_of_rewards' reward random chance to be different types.
+
+        // spawn a guaranteed Regular reward
         int x1 = random.nextInt(mapWidth-2)+1;
         int y1 = random.nextInt(mapHeight-3)+1;
         while((x1==1 && y1 == 1) || (grid[y1][x1] == 'w')){
@@ -67,7 +69,7 @@ public class RewardClient {
         }
         rewards.add(RewardFactory.createReward("Regular", 10, x1, y1));
 
-
+        // spawn the rest for random chance
         for (int i = 0; i < number_of_rewards-1; i++) {
             
             int x = random.nextInt(mapWidth-2)+1;
@@ -105,7 +107,7 @@ public class RewardClient {
      */
     public int collectReward(int x, int y) {
         if (!(x > 0 || y > 0 || x <= mapWidth || y <= mapHeight)) {
-            
+
             return 0; // Invalid coordinates
         }
 

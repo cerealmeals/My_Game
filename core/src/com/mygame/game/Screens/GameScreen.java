@@ -114,7 +114,7 @@ public class GameScreen extends SuperScreen{
         game.font.draw(game.batch, "Level: " + game.level, 0, Gdx.graphics.getHeight()-1);
         String FormatedTime = String.format("%.2f", game.time);
         game.font.draw(game.batch, "Time: " + FormatedTime, texture_Width*(game.mapWidth/2-4), Gdx.graphics.getHeight()-1);
-        game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-8), Gdx.graphics.getHeight()-1);
+        game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-7), Gdx.graphics.getHeight()-1);
         
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygame.PowerUp.PowerUpClient;
 import com.mygame.game.Screens.MainMenuScreen;
 import com.mygame.game.reward.RewardClient;
 
@@ -20,6 +21,7 @@ public class GameLogic extends Game {
 	public int mapWidth = 2*mapHeight; 
     public Grid grid = new Grid(mapHeight, mapWidth);
     public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
+	public PowerUpClient powerUpClient = PowerUpClient.getInstance();
     public Player player = new Player();
 
     /*int released = 1; // Used as a boolean to control key releases
