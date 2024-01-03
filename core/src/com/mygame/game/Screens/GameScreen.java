@@ -124,6 +124,30 @@ public class GameScreen extends SuperScreen{
     }
 
     private void playerMovement(){
+        if(game.time - PlayerMovement >= game.PlayerSpeed){
+                PlayerMovement = game.time;
+            if(Gdx.input.isKeyPressed(Keys.LEFT)||Gdx.input.isKeyPressed(Keys.A))
+            {
+                game.player.movePlayer('a', game.grid);
+                afterPlayerMovement();
+            }
+            if(Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.D))
+            {
+                game.player.movePlayer('d', game.grid);
+                afterPlayerMovement();
+            }
+            if(Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.W)){
+                game.player.movePlayer('w', game.grid);
+                afterPlayerMovement();
+            }
+            if(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.S)){
+                game.player.movePlayer('s', game.grid);
+                afterPlayerMovement();
+            }
+        }
+    }
+
+    private void playerMovement1(){
         Boolean flag = false;
         if(game.time - PlayerMovement >= game.PlayerSpeed){
             PlayerMovement = game.time;

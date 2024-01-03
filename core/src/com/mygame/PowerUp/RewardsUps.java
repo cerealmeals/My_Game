@@ -2,9 +2,9 @@ package com.mygame.PowerUp;
 
 import com.mygame.game.GameLogic.GameLogic;
 
-public class Rewards extends PowerUp{
+public class RewardsUps extends PowerUp{
 
-    public Rewards(GameLogic g) {
+    public RewardsUps(GameLogic g) {
         super(g);
     }
     

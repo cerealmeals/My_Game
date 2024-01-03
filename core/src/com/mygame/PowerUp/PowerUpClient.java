@@ -2,6 +2,7 @@ package com.mygame.PowerUp;
 
 import java.util.List;
 import java.util.Random;
+import java.util.ArrayList;
 
 import com.mygame.game.GameLogic.GameLogic;
 
@@ -10,11 +11,13 @@ public class PowerUpClient {
     private static PowerUpClient instance = null;
     Random random;
     int number_of_power_up = 5;
-    float percent = 1/number_of_power_up;
+    float percent;
     public List<PowerUp> choices;
 
     private PowerUpClient(){
+        percent = 1/(float)number_of_power_up;
         random = new Random();
+        choices = new ArrayList<>();
     }
 
     public static PowerUpClient getInstance(){
@@ -30,13 +33,13 @@ public class PowerUpClient {
 
         for(int i = 0; i < 3; i++){
             if(pick < percent){
-                type = "Flame";
+                type = "Bonus";
             }
             else if(pick < percent*2){
-                type = "Speed";
+                type = "Flame";
             }
             else if(pick < percent*3){
-                type = "Bonus";
+                type = "Speed";
             }
             else if(pick < percent*4){
                 type = "Punishment";
