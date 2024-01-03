@@ -18,7 +18,7 @@ public class RewardClient {
 
     // Used to randomly generate rewards and punishments
     float bonusRewardChance = 0.1f;
-    float punishmentChance = 0.4f;
+    float punishmentChance = 0.3f;
 
     /**
      * Constructor for the RewardClient class.
@@ -85,7 +85,7 @@ public class RewardClient {
                 type =  "Bonus";
                 scoreValue = 50;     
             }
-            else if(percent < punishmentChance){
+            else if(percent < bonusRewardChance+punishmentChance){
                 type = "Punishment";
                 scoreValue = -5;
             }
@@ -159,5 +159,21 @@ public class RewardClient {
 
     public void setNumRewards(int n){
         number_of_rewards = n;
+    }
+
+    public void setbonusRewardChance(float f){
+        bonusRewardChance = f;
+    }
+
+    public float getbonusRewardChance(){
+        return bonusRewardChance;
+    }
+    
+    public void setpunishmentChance(float f){
+        punishmentChance = f;
+    }
+
+    public float getpunishmentChance(){
+        return punishmentChance;
     }
 }
