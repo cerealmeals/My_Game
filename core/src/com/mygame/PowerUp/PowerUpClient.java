@@ -50,4 +50,8 @@ public class PowerUpClient {
             choices.add(PowerUpFactory.createPowerUp(game, type));
         }
     }
+
+    public void clear(){
+        choices.clear();
+    }
 }
