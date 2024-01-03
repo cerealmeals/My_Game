@@ -218,7 +218,7 @@ public class GameScreen extends SuperScreen{
     }
 
     private void NextLevel(){
-        game.setScreen(new LevelOverScreen(this.game));
+        game.setScreen(new PowerUpScreen(this.game));
         dispose();
     }
 
