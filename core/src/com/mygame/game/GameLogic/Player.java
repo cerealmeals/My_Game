@@ -75,7 +75,7 @@ public class Player {
                     explosion = true;
                 }
                 RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
-                score += rewardClient.collectReward( ypos[0], xpos[0]);
+                score += rewardClient.collectReward( xpos[0], ypos[0]);
                 // Reset the cell to a path cell.
                 grid.setGrid(ypos[0], xpos[0],  'p');
             }

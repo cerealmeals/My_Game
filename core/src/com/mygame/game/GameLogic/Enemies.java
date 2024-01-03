@@ -13,7 +13,6 @@ public class Enemies {
     private int xpos; // The x-coordinate of the enemy's position on the grid.
     private int ypos; // The y-coordinate of the enemy's position on the grid.
     private Random rn = new Random(); // Random number generator for enemy movement.
-    private int speed = 800;
     long time = System.currentTimeMillis(); // Time reference variables for enemy movement.
     /**
      * Default constructor for P_Enemies class.
@@ -31,8 +30,7 @@ public class Enemies {
      * @param hp     The health of the enemy.
      * @param grid2  The game grid where the enemy is spawned.
      */
-    public Enemies(int hp, Grid grid2, int speed){
-        this.speed=speed;
+    public Enemies(int hp, Grid grid2){
         health = hp; // Set the enemy's health.
         this.spawn(grid2); // Spawn the enemy on the grid.
     }
@@ -57,55 +55,49 @@ public class Enemies {
      */
     public int enemiesMove(Player player, Grid grid){
 
-        if (System.currentTimeMillis()-time >= speed ){
-            time = System.currentTimeMillis();
+        int current_Position = ypos*grid.getMapWidth() + xpos;
+        int player_Position = player.getYPos()[0]*grid.getMapWidth() + player.getXPos()[0]; 
+
+        int nextposition = BFS(grid.getGraph(), grid.getNumber_of_vertices(), current_Position, player_Position); // should return the next move
+
+        //calculate nex x and y
+        int diff = nextposition - current_Position;
+        // set new position
+        if(diff == -1){
+            xpos--;
+        }
+        else if(diff == 1){
+            xpos++;
+        }
+        else if(diff == grid.getMapWidth()){
+            ypos++;
+        }
+        else{
+            ypos--;
+        }
+
+        // check to see if player is there.
+        int i = 0;
+        if(ypos == player.getYPos()[i] && xpos == player.getXPos()[i]){
+            return 2;
+        }
+
+        // check to see if flames are there.
+        for(; i< player.getTrailLength(); i++){
             
-            int current_Position = ypos*grid.getMapWidth() + xpos;
-            int player_Position = player.getYPos()[0]*grid.getMapWidth() + player.getXPos()[0]; 
-
-            int nextposition = BFS(grid.getGraph(), grid.getNumber_of_vertices(), current_Position, player_Position); // should return the next move
-
-            //calculate nex x and y
-            int diff = nextposition - current_Position;
-            // set new position
-            if(diff == -1){
-                xpos--;
-            }
-            else if(diff == 1){
-                xpos++;
-            }
-            else if(diff == grid.getMapWidth()){
-                ypos++;
-            }
-            else{
-                ypos--;
-            }
-
-            // check to see if player is there.
-            int i = 0;
             if(ypos == player.getYPos()[i] && xpos == player.getXPos()[i]){
-                return 2;
-            }
-
-            // check to see if flames are there.
-            for(; i< player.getTrailLength(); i++){
-                
-                if(ypos == player.getYPos()[i] && xpos == player.getXPos()[i]){
-                    // if flames are there take damage.
-                    health -= player.getFlameDamage();
-                    // maybe only get damaged once
-                    // i = player.getTrailLength();
-                }
-            }
-            //check if health is zero
-            if(health <= 0){
-                return 1;
+                // if flames are there take damage.
+                health -= player.getFlameDamage();
+                // maybe only get damaged once
+                // i = player.getTrailLength();
             }
         }
-        
-        
-        return 0;
-        
+        //check if health is zero
+        if(health <= 0){
+            return 1;
+        }
+
+        return 0;    
     }
 
     private int BFS(ArrayList<ArrayList<Integer>> graph, int number_of_verties, int source, int destination){

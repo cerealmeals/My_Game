@@ -104,7 +104,8 @@ public class RewardClient {
      * @return The score value of the collected reward.
      */
     public int collectReward(int x, int y) {
-        if (x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) {
+        if (!(x > 0 || y > 0 || x <= mapWidth || y <= mapHeight)) {
+            
             return 0; // Invalid coordinates
         }
 
@@ -115,7 +116,6 @@ public class RewardClient {
             removeRewardAt(x, y); // Remove the reward from the board
             return score;
         }
-
         return 0;
     }
 
@@ -127,6 +127,7 @@ public class RewardClient {
      * @return The reward at the given position or null if no reward is present.
      */
     public Reward getRewardAt(int x, int y) {
+        
         for (Reward reward : rewards) {
             if (reward.getX() == x && reward.getY() == y) {
                 return reward;

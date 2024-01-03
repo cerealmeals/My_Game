@@ -13,7 +13,9 @@ public class GameLogic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	
-	public int speed = 1000;
+	public float time = 0;
+	public float EnemySpeed = 1f;
+	public float PlayerSpeed = 0.2f;
 	public int mapHeight = 11;
 	public int mapWidth = 2*mapHeight; 
     public Grid grid = new Grid(mapHeight, mapWidth);
@@ -25,8 +27,7 @@ public class GameLogic extends Game {
     int gamePaused = 0; // Used as a boolean to determine if the game is paused
     int levelOver = 0; // Used as a boolean to see if the level is completed
     int gameOver = 0; // Used as a boolean to see if the game is over
-	long time;
-    long time_paused; */ 
+	*/ 
 	public int level = 1;
     public int enemy_HP = 1;
     public int initial_number_of_enemies = 4;
@@ -36,10 +37,11 @@ public class GameLogic extends Game {
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
+		batch = new SpriteBatch(); 
 		font = new BitmapFont();
+		font.getData().setScale(5.5f);
 		for(int i = 0; i < initial_number_of_enemies; i++){
-            enemies.add(new Enemies(enemy_HP, grid, speed));
+            enemies.add(new Enemies(enemy_HP, grid));
         }
 		this.setScreen(new MainMenuScreen(this));
 		
@@ -50,7 +52,7 @@ public class GameLogic extends Game {
 		level++;
 		initial_number_of_enemies += 2;
 		rewardClient.setNumRewards(rewardClient.getNumRewards() + 5);
-		speed -= 50;
+		EnemySpeed -= 0.1;
 		int temp = player.getScore();
 		player = new Player();
 		player.setScore(temp);
@@ -58,20 +60,20 @@ public class GameLogic extends Game {
 	}
 
 	public void NewGame(){
+		rewardClient.clear();
+		rewardClient.setNumRewards(15);
 		grid = new Grid(mapHeight, mapWidth);
 		level = 1;
 		initial_number_of_enemies = 4;
 		resetEnemies();
-		rewardClient.clear();
-		rewardClient.setNumRewards(15);
-		speed = 1000;
+		EnemySpeed = 1;
 		player = new Player();
 	}
 
 	private void resetEnemies(){
 		enemies.clear();
 		for(int i = 0; i < initial_number_of_enemies; i++){
-            enemies.add(new Enemies(enemy_HP, grid, speed));
+            enemies.add(new Enemies(enemy_HP, grid));
         }
 		current_number_of_enemies = initial_number_of_enemies;
 	}

@@ -12,6 +12,8 @@ public class GameScreen extends SuperScreen{
 
     int texture_Width;
 	int texture_Height;
+    float EnemyMovement;
+    float PlayerMovement;
     
 	Texture wall;
 	Texture path;
@@ -45,6 +47,7 @@ public class GameScreen extends SuperScreen{
 
     @Override
     public void render(float delta) {
+        game.time += delta;
         ScreenUtils.clear(0, 0, 0, 1);
 		texture_Width = Gdx.graphics.getWidth()/game.mapWidth;
 		texture_Height = Gdx.graphics.getHeight()/game.mapHeight;
@@ -55,6 +58,7 @@ public class GameScreen extends SuperScreen{
 		drawMap();
 		drawplayer();
         drawEnemies();
+        drawtextinfo();
 		game.batch.end();
         imputs();
         EnemieMovement();
@@ -106,28 +110,48 @@ public class GameScreen extends SuperScreen{
         }
     }
 
+    private void drawtextinfo(){
+        game.font.draw(game.batch, "Level: " + game.level, 0, Gdx.graphics.getHeight()-1);
+        String FormatedTime = String.format("%.2f", game.time);
+        game.font.draw(game.batch, "Time: " + FormatedTime, texture_Width*(game.mapWidth/2-4), Gdx.graphics.getHeight()-1);
+        game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-8), Gdx.graphics.getHeight()-1);
+        
+    }
+
     private void imputs(){
         playerMovement();
         Pause();
     }
 
     private void playerMovement(){
-        if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A)){
+        Boolean flag = false;
+        if(game.time - PlayerMovement >= game.PlayerSpeed){
+            PlayerMovement = game.time;
+            flag = true;
+        }
+        if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A) ||
+            flag&&(Gdx.input.isKeyPressed(Keys.LEFT)||Gdx.input.isKeyPressed(Keys.A)))
+        {
             game.player.movePlayer('a', game.grid);
             afterPlayerMovement();
         }
-        if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D)){
+        if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D)||
+            flag&&(Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.D)))
+        {
             game.player.movePlayer('d', game.grid);
             afterPlayerMovement();
         }
-        if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)){
+        if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)||
+            flag&&(Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.W))){
             game.player.movePlayer('w', game.grid);
             afterPlayerMovement();
         }
-        if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)){
+        if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)||
+            flag&&(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.S))){
             game.player.movePlayer('s', game.grid);
             afterPlayerMovement();
         }
+        flag = false;
     }
 
     private void Pause(){
@@ -165,23 +189,26 @@ public class GameScreen extends SuperScreen{
         }
     }
     private void EnemieMovement() {
-        int i = 0;
-        while(i < game.current_number_of_enemies){
-            int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
-            // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player
-            switch(flag){
-                case 1:
-                    game.enemies.remove(game.enemies.get(i));
-                    game.current_number_of_enemies--;
-                    break;
-                case 2:
-                    //System.out.println("game over an enemy touched you - enemyMovement");
-                    GameOver();
-                    break;
-                default:
-                    break;
-            } 
-            i++; 
+        if (game.time - EnemyMovement >= game.EnemySpeed){
+            EnemyMovement = game.time;
+            int i = 0;
+            while(i < game.current_number_of_enemies){
+                int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
+                // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player
+                switch(flag){
+                    case 1:
+                        game.enemies.remove(game.enemies.get(i));
+                        game.current_number_of_enemies--;
+                        break;
+                    case 2:
+                        //System.out.println("game over an enemy touched you - enemyMovement");
+                        GameOver();
+                        break;
+                    default:
+                        break;
+                } 
+                i++; 
+            }
         }
     }
 
