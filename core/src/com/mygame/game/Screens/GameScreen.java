@@ -62,31 +62,35 @@ public class GameScreen extends SuperScreen{
 
     private void drawMap(){
         for (int i = 0; i < game.mapHeight; i++) {
-                    for (int j = 0; j < game.mapWidth; j++) {
-                        if (game.grid.getGrid()[i][j] == 'w')
-                            game.batch.draw(wall,  j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                        if (game.grid.getGrid()[i][j] == 'p')
-                            game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                        if (game.grid.getGrid()[i][j] == 'm') {
-                            //fill(163 - 100, 124 - 100, 110 - 100);
-                            //rect(i * width / mapsize, j * width / mapsize, width / mapsize, width / mapsize);
-                        }
-                        if (game.grid.getGrid()[i][j] == 'e')
-                            game.batch.draw(exit, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                        if (game.grid.getGrid()[i][j] == 'r') {
-                            game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                            game.batch.draw(reward, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                        }
-                        if (game.grid.getGrid()[i][j] == 'b') {
-                            game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                            game.batch.draw(superReward, j * texture_Width  , i * texture_Height, texture_Width, texture_Height);
-                        }
-                        if (game.grid.getGrid()[i][j] == 'u') {
-                            game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                            game.batch.draw(punishment, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
-                        }
-                    }
+            for (int j = 0; j < game.mapWidth; j++) {
+                char type = game.grid.getGrid()[i][j];
+                switch (type) {
+                    case 'w':
+                        game.batch.draw(wall,  j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    case 'p':
+                        game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    case 'e':
+                        game.batch.draw(exit, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    case 'r':
+                        game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        game.batch.draw(reward, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    case 'b':
+                        game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        game.batch.draw(superReward, j * texture_Width  , i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    case 'u':
+                        game.batch.draw(path, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        game.batch.draw(punishment, j * texture_Width, i * texture_Height, texture_Width, texture_Height);
+                        break;
+                    default:
+                        break;
                 }
+            }
+        }
     }
 
     private void drawplayer(){
@@ -173,6 +177,8 @@ public class GameScreen extends SuperScreen{
                 case 2:
                     //System.out.println("game over an enemy touched you - enemyMovement");
                     GameOver();
+                    break;
+                default:
                     break;
             } 
             i++; 
