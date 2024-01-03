@@ -5,6 +5,9 @@ import com.mygame.game.GameLogic.GameLogic;
 public class PowerUp {
     final GameLogic game;
 
+    public String description;
+    public String Name;
+
     public PowerUp(GameLogic g){
         game = g;
     }
