@@ -35,13 +35,13 @@ public class GameLogic extends Game {
     public int initial_number_of_enemies = 4;
     public int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
     public ArrayList<Enemies> enemies = new ArrayList<Enemies>(); // Stores all the enemies in one data structure
-    
+    public float scale = 4;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch(); 
 		font = new BitmapFont();
-		font.getData().setScale(3f);
+		font.getData().setScale(scale);
 		for(int i = 0; i < initial_number_of_enemies; i++){
             enemies.add(new Enemies(enemy_HP, grid));
         }
@@ -66,6 +66,7 @@ public class GameLogic extends Game {
 		rewardClient.setNumRewards(15);
 		grid = new Grid(mapHeight, mapWidth);
 		level = 1;
+		time = 0;
 		initial_number_of_enemies = 4;
 		resetEnemies();
 		EnemySpeed = 1;

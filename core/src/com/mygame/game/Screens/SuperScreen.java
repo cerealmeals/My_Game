@@ -14,12 +14,14 @@ public class SuperScreen implements Screen {
 
     int texture_Width;
 	int texture_Height;
-    
+
     public SuperScreen(final GameLogic game){
         this.game = game;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        texture_Width = Gdx.graphics.getWidth()/game.mapWidth;
+		texture_Height = Gdx.graphics.getHeight()/game.mapHeight;
     }
 
 

@@ -30,9 +30,10 @@ public class PowerUpScreen extends SuperScreen {
         draw_Power_Up(i*Gdx.graphics.getWidth()/3, game.powerUpClient.choices.get(i));
         }
 
-        game.font.draw(game.batch, "Number of Rewards increases by 5\nAnd number of enemies increase by 2", (Gdx.graphics.getWidth()/4), 100);
+        game.font.draw(game.batch, "Number of Rewards increases by 5\nAnd number of enemies increase by 2\nEnemies also move faster",
+         (Gdx.graphics.getWidth()/4), 100);
 
-        game.font.getData().setScale(3f);
+        game.font.getData().setScale(game.scale);
         game.batch.end();
     }
 

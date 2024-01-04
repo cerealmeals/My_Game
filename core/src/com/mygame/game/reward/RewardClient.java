@@ -13,6 +13,9 @@ public class RewardClient {
     private final int mapWidth;
     private final List<Reward> rewards;
     private int number_of_rewards = 15;
+    public int coalScore = 10;
+    public int puddleScore = -5;
+    public int bonusScore = 50;
     //private char[][] grid;
     Random random;
 
@@ -83,15 +86,15 @@ public class RewardClient {
             float percent = random.nextFloat();
             if (percent < bonusRewardChance) {
                 type =  "Bonus";
-                scoreValue = 50;     
+                scoreValue = bonusScore;     
             }
             else if(percent < bonusRewardChance+punishmentChance){
                 type = "Punishment";
-                scoreValue = -5;
+                scoreValue = puddleScore;
             }
             else{
                 type = "Regular";
-                scoreValue = 10;
+                scoreValue = coalScore;
             }rewards.add(RewardFactory.createReward(type, scoreValue, x, y));
             
         }

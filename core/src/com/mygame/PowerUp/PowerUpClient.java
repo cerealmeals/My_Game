@@ -44,7 +44,7 @@ public class PowerUpClient {
             type = "Flame";
         }
         else if(pick < percent*3){
-            type = "Speed";
+            type = "Coal";
         }
         else if(pick < percent*4){
             type = "Punishment";

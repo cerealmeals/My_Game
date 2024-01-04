@@ -40,11 +40,13 @@ public class MainMenuScreen extends SuperScreen {
 		game.batch.begin();
 		
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int play_y = Gdx.graphics.getHeight() - play.getHeight();
+        int play_y = Gdx.graphics.getHeight() - play.getHeight() - texture_Height;
+
         //play button
         draw_Button(play, play_c, center_x, play_y, new GameScreenCommand());
 
         //setting button
+        
 
         int quit_y = 0;
         //quit button
