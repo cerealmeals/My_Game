@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygame.game.GameLogic.GameLogic;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 
 public class GameScreen extends SuperScreen{
 
@@ -14,6 +15,7 @@ public class GameScreen extends SuperScreen{
 	int texture_Height;
     float EnemyMovement;
     float PlayerMovement;
+    Sound puddle;
     
 	Texture wall;
 	Texture path;
@@ -38,6 +40,7 @@ public class GameScreen extends SuperScreen{
 		trail_yellow = new Texture("Trail/trail_yellow.png");
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
         enemy = new Texture("enemy.png");
+        puddle = Gdx.audio.newSound(Gdx.files.internal("puddle.wav"));
 		
     }
     @Override
@@ -117,53 +120,57 @@ public class GameScreen extends SuperScreen{
     }
 
     private void playerMovement(){
+        int sound_check = 0;
         if(game.time - PlayerMovement >= game.PlayerSpeed){
                 PlayerMovement = game.time;
             if(Gdx.input.isKeyPressed(Keys.LEFT)||Gdx.input.isKeyPressed(Keys.A))
             {
-                game.player.movePlayer('a', game.grid);
-                afterPlayerMovement();
+                sound_check = game.player.movePlayer('a', game.grid);
+                afterPlayerMovement(sound_check);
             }
             else if(Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.D))
             {
-                game.player.movePlayer('d', game.grid);
-                afterPlayerMovement();
+                sound_check = game.player.movePlayer('d', game.grid);
+                afterPlayerMovement(sound_check);
             }
             else if(Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.W)){
-                game.player.movePlayer('w', game.grid);
-                afterPlayerMovement();
+                sound_check = game.player.movePlayer('w', game.grid);
+                afterPlayerMovement(sound_check);
             }
             else if(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.S)){
-                game.player.movePlayer('s', game.grid);
-                afterPlayerMovement();
+                sound_check = game.player.movePlayer('s', game.grid);
+                afterPlayerMovement(sound_check);
             }
         }
     }
 
     private void playerMovement2(){
-    
+        int sound_check = 0;
         if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A))
         {
-            game.player.movePlayer('a', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('a', game.grid);
+            afterPlayerMovement(sound_check);
         }
         else if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D))
+        {  
+            sound_check = game.player.movePlayer('d', game.grid);
+            afterPlayerMovement(sound_check);
+        }
+        else if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W))
         {
-            game.player.movePlayer('d', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('w', game.grid);
+            afterPlayerMovement(sound_check);
         }
-        else if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)){
-            game.player.movePlayer('w', game.grid);
-            afterPlayerMovement();
-        }
-        else if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)){
-            game.player.movePlayer('s', game.grid);
-            afterPlayerMovement();
+        else if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S))
+        {
+            sound_check = game.player.movePlayer('s', game.grid);
+            afterPlayerMovement(sound_check);
         }
     
     }
 
     private void playerMovement1(){
+        int sound_check = 0;
         Boolean flag = false;
         if(game.time - PlayerMovement >= game.PlayerSpeed){
             PlayerMovement = game.time;
@@ -172,24 +179,24 @@ public class GameScreen extends SuperScreen{
         if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A) ||
             flag&&(Gdx.input.isKeyPressed(Keys.LEFT)||Gdx.input.isKeyPressed(Keys.A)))
         {
-            game.player.movePlayer('a', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('a', game.grid);
+            afterPlayerMovement(sound_check);
         }
         if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D)||
             flag&&(Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.D)))
         {
-            game.player.movePlayer('d', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('d', game.grid);
+            afterPlayerMovement(sound_check);
         }
         if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)||
             flag&&(Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.W))){
-            game.player.movePlayer('w', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('w', game.grid);
+            afterPlayerMovement(sound_check);
         }
         if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)||
             flag&&(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.S))){
-            game.player.movePlayer('s', game.grid);
-            afterPlayerMovement();
+            sound_check = game.player.movePlayer('s', game.grid);
+            afterPlayerMovement(sound_check);
         }
         flag = false;
     }
@@ -201,11 +208,24 @@ public class GameScreen extends SuperScreen{
         }
     }
 
-    private void afterPlayerMovement(){
+    private void afterPlayerMovement(int sound_check){
+        playSound(sound_check);
         enemyCheck();
         PlaceExit();
         ExitCheck();
     }
+
+    private void playSound(int sound_check){
+        switch (sound_check) {
+            case 2:
+                puddle.play(game.volume);
+                break;
+        
+            default:
+                break;
+        }
+    }
+
     private void enemyCheck(){
         for(int i = 0; i < game.current_number_of_enemies; i++){
             if(game.enemies.get(i).getXPos() == game.player.getXPos()[0] && game.enemies.get(i).getYPos() == game.player.getYPos()[0]){
@@ -280,6 +300,7 @@ public class GameScreen extends SuperScreen{
 		trail_yellow.dispose();
 		playerYellow_1.dispose();
         enemy.dispose();
+        puddle.dispose();
     }
     
 }

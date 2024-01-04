@@ -2,11 +2,12 @@ package com.mygame.game.GameLogic;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygame.PowerUp.PowerUpClient;
 import com.mygame.game.Screens.MainMenuScreen;
-import com.mygame.game.Screens.WinScreen;
 import com.mygame.game.reward.RewardClient;
 
 
@@ -15,6 +16,7 @@ public class GameLogic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	
+	public float volume = 1;
 	public float time = 0;
 	public float EnemySpeed = 1f;
 	public float PlayerSpeed = 0.2f;

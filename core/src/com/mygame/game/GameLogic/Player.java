@@ -33,52 +33,58 @@ public class Player {
      * @param grid      The game grid where the player moves.
      */
 
-    public void movePlayer(char key, Grid grid) {
+    public int movePlayer(char key, Grid grid) {
 
-            // Moves the player according to the key input after checking for walls
-            if (key == 'd' && grid.getGrid()[ypos[0]][xpos[0] + 1] != 'w') {
-                storePrev();
-                xpos[0] += 1;
-            } else if (key == 'a' && grid.getGrid()[ypos[0]][xpos[0] - 1] != 'w') {
-                storePrev();
-                xpos[0] -= 1;
-            } else if (key == 's' && grid.getGrid()[ypos[0] - 1][xpos[0]] != 'w') {
-                storePrev();
-                ypos[0] -= 1;
-            } else if (key == 'w' && grid.getGrid()[ypos[0] + 1][xpos[0]] != 'w') {
-                storePrev();
-                ypos[0] += 1;
-            }
+        // Moves the player according to the key input after checking for walls
+        if (key == 'd' && grid.getGrid()[ypos[0]][xpos[0] + 1] != 'w') {
+            storePrev();
+            xpos[0] += 1;
+        } else if (key == 'a' && grid.getGrid()[ypos[0]][xpos[0] - 1] != 'w') {
+            storePrev();
+            xpos[0] -= 1;
+        } else if (key == 's' && grid.getGrid()[ypos[0] - 1][xpos[0]] != 'w') {
+            storePrev();
+            ypos[0] -= 1;
+        } else if (key == 'w' && grid.getGrid()[ypos[0] + 1][xpos[0]] != 'w') {
+            storePrev();
+            ypos[0] += 1;
+        }
 
-            /**
-            * Adds rewards to the score of the player accordingly
-            * Sets the reward character to a path after it is collected
-            */ 
-            interact_with_reward(grid);
+        /**
+        * Adds rewards to the score of the player accordingly
+        * Sets the reward character to a path after it is collected
+        */ 
+        return interact_with_reward(grid);
     }
 
     /**
     * Adds rewards to the score of the player accordingly
     * Sets the reward character to a path after it is collected
     */ 
-    private void interact_with_reward(Grid grid){
+    private int interact_with_reward(Grid grid){
+        // 0 for path, 1 for coal/rewards, 2 for puddles/punishment, 3 for bonus reward.
+        int sounds = 0;
         char cellType = grid.getGrid()[ypos[0]][xpos[0]];
-            if (cellType == 'b' || cellType == 'r' || cellType == 'u') {
-                if(cellType == 'r'){
-                    rewards++;
-                    increasetrail();
-                }
-                if(cellType == 'u'){
-                    decreasetrail();
-                }
-                if(cellType == 'b'){
-                    explosion = true;
-                }
-                RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
-                score += rewardClient.collectReward( xpos[0], ypos[0]);
-                // Reset the cell to a path cell.
-                grid.setGrid(ypos[0], xpos[0],  'p');
+        if (cellType == 'b' || cellType == 'r' || cellType == 'u') {
+            if(cellType == 'r'){
+                sounds = 1;
+                rewards++;
+                increasetrail();
             }
+            if(cellType == 'u'){
+                sounds = 2;
+                decreasetrail();
+            }
+            if(cellType == 'b'){
+                sounds = 3;
+                explosion = true;
+            }
+            RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
+            score += rewardClient.collectReward( xpos[0], ypos[0]);
+            // Reset the cell to a path cell.
+            grid.setGrid(ypos[0], xpos[0],  'p');
+        }
+        return sounds;
     }
 
 
