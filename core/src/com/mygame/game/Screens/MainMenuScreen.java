@@ -14,6 +14,9 @@ public class MainMenuScreen extends SuperScreen {
     Texture settings_c;
     Texture quit;
     Texture quit_c;
+    Texture controls;
+    Texture controls_c;
+
 
     public MainMenuScreen(GameLogic game) {
         super(game);
@@ -23,6 +26,8 @@ public class MainMenuScreen extends SuperScreen {
         settings_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Settings col_Button.png");
         quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
         quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");
+        controls = new Texture("buttons/Large Buttons/Large Buttons/Controls Button.png");
+        controls_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Controls col_Button.png");
     }
 
     @Override
@@ -32,28 +37,36 @@ public class MainMenuScreen extends SuperScreen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0.2f, 1);
+        ScreenUtils.clear(0, 0 , 0.2f, 1);
 
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 
 		game.batch.begin();
 		
-        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int play_y = Gdx.graphics.getHeight() - play.getHeight() - texture_Height;
+        int left_x = Gdx.graphics.getWidth() /4 - quit.getWidth()/2;
+        int right_x = Gdx.graphics.getWidth()*3/4 - quit.getWidth()/2;
+        int upper_y = play.getHeight()+50;
+        int bottom_y = 0;
+
+        //draw title
+        game.font.getData().setScale(7);
+        game.font.draw(game.batch, "The Best Title", (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()*4/5);
+        game.font.getData().setScale(game.scale);
 
         //play button
-        draw_Button(play, play_c, center_x, play_y, new GameScreenCommand());
+        draw_Button(play, play_c, left_x, upper_y, new GameScreenCommand());
+
+        //controls button
+        draw_Button(controls, controls_c, right_x, upper_y, new ControlsCommand());
 
         //setting button
-        
+        draw_Button(settings, settings_c, left_x, bottom_y, new SettingsCommand());
 
-        int quit_y = 0;
         //quit button
-        draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
+        draw_Button(quit, quit_c, right_x, bottom_y, new QuitCommand());
 
         game.batch.end();
-
     }
 
     @Override
@@ -64,6 +77,8 @@ public class MainMenuScreen extends SuperScreen {
         quit_c.dispose();
         settings.dispose();
         settings_c.dispose();
+        controls.dispose();
+        controls_c.dispose();
     }
     
     

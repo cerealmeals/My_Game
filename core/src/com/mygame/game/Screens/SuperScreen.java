@@ -111,7 +111,7 @@ public class SuperScreen implements Screen {
         public void execute(){
             if (Gdx.input.isTouched()) {
                 game.NewGame();
-			    game.setScreen(new GameScreen(game));
+			    game.setScreen(new MainMenuScreen(game));
 			    dispose();
 		    }
         }
@@ -123,5 +123,32 @@ public class SuperScreen implements Screen {
         game.font.draw(game.batch, "Time: " + FormatedTime, texture_Width*(game.mapWidth/2-3), Gdx.graphics.getHeight()-1);
         game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-4), Gdx.graphics.getHeight()-1);
         
+    }
+
+    public class SettingsCommand implements Command{
+        public void execute(){
+            if (Gdx.input.isTouched()) {
+			    game.setScreen(new SetttingsScreen(game));
+			    dispose();
+		    }
+        }
+    }
+
+    public class ControlsCommand implements Command{
+        public void execute(){
+            if (Gdx.input.isTouched()) {
+			    game.setScreen(new ControlScreen(game));
+			    dispose();
+		    }
+        }
+    }
+
+    public class MainMenuCommand implements Command{
+        public void execute(){
+            if (Gdx.input.isTouched()) {
+                game.setScreen(new MainMenuScreen(game));
+			    dispose();
+		    }
+        }
     }
 }
