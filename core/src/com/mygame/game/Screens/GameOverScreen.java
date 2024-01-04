@@ -33,7 +33,9 @@ public class GameOverScreen extends SuperScreen {
 		game.batch.begin();
 		
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int New_game_y = Gdx.graphics.getHeight() - New_game.getHeight();
+        int New_game_y = Gdx.graphics.getHeight() - New_game.getHeight() - texture_Height;
+        drawtextinfo();
+        
         //New_game button
         draw_Button(New_game, New_game_c, center_x, New_game_y, new NewGameCommand());
 

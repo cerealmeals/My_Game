@@ -23,16 +23,16 @@ public class PowerUpScreen extends SuperScreen {
 		game.batch.begin();
 		
         game.font.draw(game.batch, "SELECT A POWER UP", (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()-1);
-        game.font.getData().setScale(3);
+    
+        game.font.getData().setScale(2);
+
         for(int i = 0; i < 3; i++){
         draw_Power_Up(i*Gdx.graphics.getWidth()/3, game.powerUpClient.choices.get(i));
         }
 
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new LevelOverScreen(game));
-            dispose();
-        }
-        game.font.getData().setScale(5.5f);
+        game.font.draw(game.batch, "Number of Rewards increases by 5\nAnd number of enemies increase by 2", (Gdx.graphics.getWidth()/4), 100);
+
+        game.font.getData().setScale(3f);
         game.batch.end();
     }
 
@@ -43,8 +43,12 @@ public class PowerUpScreen extends SuperScreen {
         Gdx.input.getY() < Gdx.graphics.getHeight() -100 && 
         Gdx.input.getY() > 100)
         {
-            game.font.draw(game.batch, power.description, position_x +50, Gdx.graphics.getHeight()*2/3);
-            //power.clicked();
+            game.font.draw(game.batch, power.description, position_x, Gdx.graphics.getHeight()*2/3);
+            if (Gdx.input.isTouched()) {
+                power.clicked();
+                game.setScreen(new LevelOverScreen(game));
+                dispose();
+            }    
         }
         else{
             game.font.draw(game.batch, power.Name, position_x, Gdx.graphics.getHeight()/2);
@@ -54,6 +58,5 @@ public class PowerUpScreen extends SuperScreen {
 
     @Override
     public void dispose() {
-        game.powerUpClient.clear();
     }
 }

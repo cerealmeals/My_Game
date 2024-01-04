@@ -17,8 +17,8 @@ public class GameLogic extends Game {
 	public float time = 0;
 	public float EnemySpeed = 1f;
 	public float PlayerSpeed = 0.2f;
-	public int mapHeight = 11;
-	public int mapWidth = 2*mapHeight; 
+	public int mapHeight = 10;
+	public int mapWidth = (int)(1.5f*mapHeight); 
     public Grid grid = new Grid(mapHeight, mapWidth);
     public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
 	public PowerUpClient powerUpClient = PowerUpClient.getInstance();
@@ -41,7 +41,7 @@ public class GameLogic extends Game {
 	public void create () {
 		batch = new SpriteBatch(); 
 		font = new BitmapFont();
-		font.getData().setScale(5.5f);
+		font.getData().setScale(3f);
 		for(int i = 0; i < initial_number_of_enemies; i++){
             enemies.add(new Enemies(enemy_HP, grid));
         }

@@ -31,7 +31,9 @@ public class PauseScreen extends SuperScreen {
 		game.batch.begin();
 		
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int Resume_y = Gdx.graphics.getHeight() - Resume.getHeight();
+        int Resume_y = Gdx.graphics.getHeight() - Resume.getHeight() - texture_Height;
+        drawtextinfo();
+        
         //Resume button
         draw_Button(Resume, Resume_c, center_x, Resume_y, new PauseScreenCommand());
 

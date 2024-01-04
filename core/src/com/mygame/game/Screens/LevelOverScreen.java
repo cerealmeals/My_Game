@@ -23,6 +23,8 @@ public class LevelOverScreen extends SuperScreen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0.2f, 1);
+        texture_Width = Gdx.graphics.getWidth()/game.mapWidth;
+		texture_Height = Gdx.graphics.getHeight()/game.mapHeight;
 
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
@@ -30,7 +32,9 @@ public class LevelOverScreen extends SuperScreen {
 		game.batch.begin();
 		
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int Continue_y = Gdx.graphics.getHeight() - Continue.getHeight();
+        int Continue_y = Gdx.graphics.getHeight() - Continue.getHeight() - texture_Height;
+        drawtextinfo();
+
         //Continue button
         draw_Button(Continue, Continue_c, center_x, Continue_y, new NewLevelCommand());
 
@@ -41,6 +45,17 @@ public class LevelOverScreen extends SuperScreen {
         draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
 
         game.batch.end();
+    }
+
+    public class NewLevelCommand implements Command{
+        public void execute(){
+            if (Gdx.input.isTouched()) {
+                game.powerUpClient.clear();
+                game.LevelUp();
+			    game.setScreen(new GameScreen(game));
+			    dispose();
+		    }
+        }
     }
     
     @Override

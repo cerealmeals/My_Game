@@ -12,6 +12,9 @@ public class SuperScreen implements Screen {
 
     OrthographicCamera camera;
 
+    int texture_Width;
+	int texture_Height;
+    
     public SuperScreen(final GameLogic game){
         this.game = game;
 
@@ -112,13 +115,11 @@ public class SuperScreen implements Screen {
         }
     }
 
-    public class NewLevelCommand implements Command{
-        public void execute(){
-            if (Gdx.input.isTouched()) {
-                game.LevelUp();
-			    game.setScreen(new GameScreen(game));
-			    dispose();
-		    }
-        }
+    public void drawtextinfo(){
+        game.font.draw(game.batch, "Level: " + game.level, 0, Gdx.graphics.getHeight()-1);
+        String FormatedTime = String.format("%.2f", game.time);
+        game.font.draw(game.batch, "Time: " + FormatedTime, texture_Width*(game.mapWidth/2-3), Gdx.graphics.getHeight()-1);
+        game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-4), Gdx.graphics.getHeight()-1);
+        
     }
 }
