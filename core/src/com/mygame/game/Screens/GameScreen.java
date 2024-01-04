@@ -62,6 +62,7 @@ public class GameScreen extends SuperScreen{
 		game.batch.end();
         imputs();
         EnemieMovement();
+        WinCondition();
     }
 
     private void drawMap(){
@@ -248,6 +249,13 @@ public class GameScreen extends SuperScreen{
                 } 
                 i++; 
             }
+        }
+    }
+
+    private void WinCondition(){
+        if(game.player.getScore() >= 1000){
+            game.setScreen(new WinScreen(this.game));
+            dispose();
         }
     }
 

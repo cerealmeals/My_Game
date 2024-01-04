@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygame.PowerUp.PowerUpClient;
 import com.mygame.game.Screens.MainMenuScreen;
+import com.mygame.game.Screens.WinScreen;
 import com.mygame.game.reward.RewardClient;
 
 
