@@ -2,8 +2,6 @@ package com.mygame.game.GameLogic;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygame.PowerUp.PowerUpClient;
@@ -19,7 +17,7 @@ public class GameLogic extends Game {
 	public float volume = 1;
 	public float time = 0;
 	public float EnemySpeed = 1f;
-	public float PlayerSpeed = 0.2f;
+	public float PlayerSpeed = 0.1f;
 	public int mapHeight = 10;
 	public int mapWidth = (int)(1.5f*mapHeight); 
     public Grid grid = new Grid(mapHeight, mapWidth);
@@ -34,7 +32,7 @@ public class GameLogic extends Game {
     int gameOver = 0; // Used as a boolean to see if the game is over
 	*/ 
 	public int level = 1;
-    public int enemy_HP = 1;
+    public int enemy_HP = 2;
     public int initial_number_of_enemies = 4;
     public int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
     public ArrayList<Enemies> enemies = new ArrayList<Enemies>(); // Stores all the enemies in one data structure

@@ -16,6 +16,7 @@ public class GameScreen extends SuperScreen{
     float EnemyMovement;
     float PlayerMovement;
     Sound puddle;
+    Sound Enemy_Contact;
     
 	Texture wall;
 	Texture path;
@@ -40,7 +41,8 @@ public class GameScreen extends SuperScreen{
 		trail_yellow = new Texture("Trail/trail_yellow.png");
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
         enemy = new Texture("enemy.png");
-        puddle = Gdx.audio.newSound(Gdx.files.internal("puddle.wav"));
+        puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle.wav"));
+        Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
 		
     }
     @Override
@@ -66,6 +68,7 @@ public class GameScreen extends SuperScreen{
         imputs();
         EnemieMovement();
         WinCondition();
+        loseCondition();
     }
 
     private void drawMap(){
@@ -230,7 +233,8 @@ public class GameScreen extends SuperScreen{
         for(int i = 0; i < game.current_number_of_enemies; i++){
             if(game.enemies.get(i).getXPos() == game.player.getXPos()[0] && game.enemies.get(i).getYPos() == game.player.getYPos()[0]){
                 //System.out.println("game over you touched an enemy - enemyCheck");
-                GameOver();
+                Enemy_Contact.play();
+                game.player.decreasetrail();
             }
         }
     }
@@ -262,7 +266,14 @@ public class GameScreen extends SuperScreen{
                         break;
                     case 2:
                         //System.out.println("game over an enemy touched you - enemyMovement");
-                        GameOver();
+                        Enemy_Contact.play();
+                        game.player.decreasetrail();
+                        break;
+                    case 3:
+                        Enemy_Contact.play();
+                        game.player.decreasetrail();
+                        game.enemies.remove(game.enemies.get(i));
+                        game.current_number_of_enemies--;
                         break;
                     default:
                         break;
@@ -287,6 +298,12 @@ public class GameScreen extends SuperScreen{
     private void NextLevel(){
         game.setScreen(new PowerUpScreen(this.game));
         dispose();
+    }
+
+    private void loseCondition(){
+        if(!game.player.alive){
+            GameOver();
+        }
     }
 
     @Override

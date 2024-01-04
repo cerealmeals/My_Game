@@ -8,6 +8,7 @@ import com.mygame.game.reward.RewardClient;
  */
 public class Player {
     public int keyRel = 0; // Key release state for player movement.
+    public Boolean alive;
     private int trailLength = 2; // Length of the player's trail.
     private int xpos[]; // Array holding the x-coordinates of the player's positions.
     private int ypos[]; // Array holding the y-coordinates of the player's positions.
@@ -22,7 +23,7 @@ public class Player {
     public Player() {
         xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
         ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
-       
+        alive = true;
     }
 
     /**
@@ -114,16 +115,20 @@ public class Player {
         ypos = tempy;
     }
 
-    private void decreasetrail(){
-        if(trailLength > 2){
+    public void decreasetrail(){
+        if(trailLength > 1){
             trailLength--;
+            int tempx[] = new int[trailLength];
+            int tempy[] = new int[trailLength];
+            System.arraycopy(xpos, 0, tempx, 0, tempx.length);
+            System.arraycopy(ypos, 0, tempy, 0, tempy.length);
+            xpos = tempx;
+            ypos = tempy;
         }
-        int tempx[] = new int[trailLength];
-        int tempy[] = new int[trailLength];
-        System.arraycopy(xpos, 0, tempx, 0, tempx.length);
-        System.arraycopy(ypos, 0, tempy, 0, tempy.length);
-        xpos = tempx;
-        ypos = tempy;
+        else{
+            alive = false;
+        }
+        
     }
 
 
