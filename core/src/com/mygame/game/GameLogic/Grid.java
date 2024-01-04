@@ -17,6 +17,7 @@ public class Grid {
     private ArrayList<ArrayList<Integer>> graph; // Represents the graph structure of the grid.
     private int number_of_vertices; // Total number of vertices in the grid.
     private int number_of_rewards = 0; // Number of rewards in the grid.
+    private Boolean exit;
 
     /**
      * Default constructor for Grid class.
@@ -31,6 +32,7 @@ public class Grid {
         mapWidth = width;
         number_of_vertices = mapHeight*mapWidth;
         grid = makeGrid(); // Create the game grid.
+        exit = true;
     }
 
     /**
@@ -215,5 +217,19 @@ public class Grid {
 
     public int getNumber_of_vertices(){
         return number_of_vertices;
+    }
+
+    public void exit(){
+        exit = false;
+        if(rn.nextFloat() >= 0.5f){
+            grid[mapHeight-2][rn.nextInt(mapWidth-2)+1] = 'e';    
+        }
+        else{
+            grid[0][rn.nextInt(mapWidth-2)+1] = 'e';
+        }
+    }
+
+    public Boolean getexit(){
+        return exit;
     }
 }

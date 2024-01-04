@@ -218,4 +218,9 @@ public class Player {
     public void setFlameDamage(int damage){
         FlameDamage = damage;
     }
+
+    public void resetPosition(){
+        xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
+        ypos = new int[]{1, -1}; // Default y-coordinates for player positions.  
+    }
 }

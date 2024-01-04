@@ -56,9 +56,7 @@ public class GameLogic extends Game {
 		initial_number_of_enemies += 2;
 		rewardClient.setNumRewards(rewardClient.getNumRewards() + 5);
 		EnemySpeed -= 0.1;
-		int temp = player.getScore();
-		player = new Player();
-		player.setScore(temp);
+		player.resetPosition();
 		resetEnemies();
 	}
 
@@ -81,11 +79,11 @@ public class GameLogic extends Game {
         }
 		current_number_of_enemies = initial_number_of_enemies;
 	}
+
 	@Override
 	public void render () {
 		super.render();
 	}
-
 
 	@Override
 	public void dispose () {

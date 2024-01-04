@@ -242,7 +242,9 @@ public class GameScreen extends SuperScreen{
     private void PlaceExit(){
         if(game.grid.getNumRewards() == game.player.getRewards()){
             // place an exit on the map
-            game.grid.getGrid()[game.mapHeight-2][game.mapWidth-2] = 'e'; 
+            if(game.grid.getexit()){
+                game.grid.exit();
+            }
         }
     }
 
@@ -318,6 +320,7 @@ public class GameScreen extends SuperScreen{
 		playerYellow_1.dispose();
         enemy.dispose();
         puddle.dispose();
+        Enemy_Contact.dispose();
     }
     
 }
