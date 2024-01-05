@@ -9,6 +9,7 @@ import java.util.Random;
  * They move within the game grid and interact with the player and the game grid elements.
  */
 public class Enemies {
+    private int maxhealth;
     private int health; // The health of the enemy.
     private int xpos; // The x-coordinate of the enemy's position on the grid.
     private int ypos; // The y-coordinate of the enemy's position on the grid.
@@ -32,6 +33,7 @@ public class Enemies {
      */
     public Enemies(int hp, Grid grid2){
         health = hp; // Set the enemy's health.
+        maxhealth = hp;
         this.spawn(grid2); // Spawn the enemy on the grid.
     }
 
@@ -173,6 +175,10 @@ public class Enemies {
 
     public void setHealth(int hp){
         this.health = hp;
+    }
+
+    public int getmaxHealth(){
+        return maxhealth;
     }
 }
     

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygame.game.GameLogic.Enemies;
 import com.mygame.game.GameLogic.GameLogic;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
@@ -26,7 +27,10 @@ public class GameScreen extends SuperScreen{
 	Texture exit;
 	Texture trail_yellow;
 	Texture playerYellow_1;
-    Texture enemy;
+    Texture enemy_1;
+    Texture enemy_2;
+    Texture enemy_3;
+    Texture enemy_4;
 
 
     public GameScreen(final GameLogic game){
@@ -40,7 +44,10 @@ public class GameScreen extends SuperScreen{
 		exit = new Texture("Door.png");
 		trail_yellow = new Texture("Trail/trail_yellow.png");
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
-        enemy = new Texture("BadCloud.png");
+        enemy_1 = new Texture("Cloud-1.png");
+        enemy_2 = new Texture("Cloud-2.png");
+        enemy_3 = new Texture("Cloud-3.png");
+        enemy_4 = new Texture("Cloud-4.png");
         puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle2.wav"));
         Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
 		
@@ -113,7 +120,20 @@ public class GameScreen extends SuperScreen{
 
     private void drawEnemies(){
         for(int i = 0; i < game.current_number_of_enemies; i++){
-            game.batch.draw(enemy, game.enemies.get(i).getXPos()*texture_Width, game.enemies.get(i).getYPos()*texture_Height, texture_Width, texture_Height);
+            Enemies enemy = game.enemies.get(i);
+            float percent_hp = (float)enemy.getHealth()/(float)enemy.getmaxHealth();
+            if(percent_hp > 0.75f){
+                game.batch.draw(enemy_1, enemy.getXPos()*texture_Width, enemy.getYPos()*texture_Height, texture_Width, texture_Height);
+            }
+            else if (percent_hp > 0.5f){
+                game.batch.draw(enemy_2, enemy.getXPos()*texture_Width, enemy.getYPos()*texture_Height, texture_Width, texture_Height);
+            }
+            else if (percent_hp > 0.25f){
+                game.batch.draw(enemy_3, enemy.getXPos()*texture_Width, enemy.getYPos()*texture_Height, texture_Width, texture_Height);
+            }
+            else{
+                game.batch.draw(enemy_4, enemy.getXPos()*texture_Width, enemy.getYPos()*texture_Height, texture_Width, texture_Height);
+            }
         }
     }
 
@@ -318,7 +338,10 @@ public class GameScreen extends SuperScreen{
 		exit.dispose();
 		trail_yellow.dispose();
 		playerYellow_1.dispose();
-        enemy.dispose();
+        enemy_1.dispose();
+        enemy_2.dispose();
+        enemy_3.dispose();
+        enemy_4.dispose();
         puddle.dispose();
         Enemy_Contact.dispose();
     }
