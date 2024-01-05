@@ -1,4 +1,4 @@
-package com.mygame.PowerUp;
+package com.mygame.game.PowerUp;
 
 import com.mygame.game.GameLogic.GameLogic;
 

@@ -1,4 +1,4 @@
-package com.mygame.PowerUp;
+package com.mygame.game.PowerUp;
 
 import java.util.List;
 import java.util.Random;

@@ -2,8 +2,8 @@ package com.mygame.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygame.PowerUp.PowerUp;
 import com.mygame.game.GameLogic.GameLogic;
+import com.mygame.game.PowerUp.PowerUp;
 
 public class PowerUpScreen extends SuperScreen {
 
