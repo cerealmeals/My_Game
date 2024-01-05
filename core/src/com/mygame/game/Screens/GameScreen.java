@@ -41,7 +41,7 @@ public class GameScreen extends SuperScreen{
 		trail_yellow = new Texture("Trail/trail_yellow.png");
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
         enemy = new Texture("BadCloud.png");
-        puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle.wav"));
+        puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle2.wav"));
         Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
 		
     }
