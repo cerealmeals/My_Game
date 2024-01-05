@@ -7,7 +7,7 @@ import com.mygame.game.reward.RewardClient;
  * It controls player movement and interaction with the game grid elements.
  */
 public class Player {
-    public int keyRel = 0; // Key release state for player movement.
+    
     public Boolean alive;
     private int trailLength = 2; // Length of the player's trail.
     private int xpos[]; // Array holding the x-coordinates of the player's positions.
@@ -221,6 +221,9 @@ public class Player {
 
     public void resetPosition(){
         xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
-        ypos = new int[]{1, -1}; // Default y-coordinates for player positions.  
+        ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
+        alive = true;
+        trailLength = 2;
+        rewards = 0;  
     }
 }

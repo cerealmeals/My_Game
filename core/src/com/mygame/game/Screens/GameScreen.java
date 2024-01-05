@@ -37,10 +37,10 @@ public class GameScreen extends SuperScreen{
 		reward = new Texture("reward.png");
 		punishment = new Texture("punishment.png");
 		superReward = new Texture("superReward.png");
-		exit = new Texture("exit.png");
+		exit = new Texture("Door.png");
 		trail_yellow = new Texture("Trail/trail_yellow.png");
 		playerYellow_1 = new Texture("Yellow/playerYellow_1.png");
-        enemy = new Texture("enemy.png");
+        enemy = new Texture("BadCloud.png");
         puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle.wav"));
         Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
 		
