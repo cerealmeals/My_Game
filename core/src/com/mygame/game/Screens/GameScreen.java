@@ -16,8 +16,12 @@ public class GameScreen extends SuperScreen{
 	int texture_Height;
     float EnemyMovement;
     float PlayerMovement;
+    
     Sound puddle;
     Sound Enemy_Contact;
+    Sound Enemy_death;
+    Sound coal;
+    Sound explosion;
     
 	Texture wall;
 	Texture path;
@@ -50,6 +54,9 @@ public class GameScreen extends SuperScreen{
         enemy_4 = new Texture("Cloud-4.png");
         puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle2.wav"));
         Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
+        Enemy_death = Gdx.audio.newSound(Gdx.files.internal("Sounds/Cloud_death.wav"));
+        coal = Gdx.audio.newSound(Gdx.files.internal("Sounds/coal.wav"));
+        explosion = Gdx.audio.newSound(Gdx.files.internal("Sounds/explosion.wav"));
 		
     }
     @Override
@@ -240,10 +247,15 @@ public class GameScreen extends SuperScreen{
 
     private void playSound(int sound_check){
         switch (sound_check) {
+            case 1:
+                coal.play(game.volume);
+                break;
             case 2:
                 puddle.play(game.volume);
                 break;
-        
+            case 3:
+                explosion.play(game.volume);
+                break;
             default:
                 break;
         }
@@ -280,9 +292,10 @@ public class GameScreen extends SuperScreen{
             int i = 0;
             while(i < game.current_number_of_enemies){
                 int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
-                // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player
+                // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player, 3 = both 1 and 2
                 switch(flag){
                     case 1:
+                        Enemy_death.play(game.volume);
                         game.enemies.remove(game.enemies.get(i));
                         game.current_number_of_enemies--;
                         break;
@@ -294,6 +307,7 @@ public class GameScreen extends SuperScreen{
                     case 3:
                         Enemy_Contact.play();
                         game.player.decreasetrail();
+                        Enemy_death.play(game.volume);
                         game.enemies.remove(game.enemies.get(i));
                         game.current_number_of_enemies--;
                         break;
@@ -344,6 +358,10 @@ public class GameScreen extends SuperScreen{
         enemy_4.dispose();
         puddle.dispose();
         Enemy_Contact.dispose();
+        Enemy_death.dispose();
+        coal.dispose();
+        explosion.dispose();
+        
     }
     
 }

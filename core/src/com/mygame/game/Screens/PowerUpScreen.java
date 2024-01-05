@@ -1,18 +1,24 @@
 package com.mygame.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygame.game.GameLogic.GameLogic;
 import com.mygame.game.PowerUp.PowerUp;
 
 public class PowerUpScreen extends SuperScreen {
 
+    Sound door_creek;
+
     public PowerUpScreen(GameLogic game) {
         super(game);
-
+        door_creek = Gdx.audio.newSound(Gdx.files.internal("Sounds/door_creek.wav"));
         game.powerUpClient.generatePowerUps(game);
     }
-    
+    @Override
+    public void show(){
+        door_creek.play(game.volume);
+    }
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0.2f, 1);
@@ -59,5 +65,6 @@ public class PowerUpScreen extends SuperScreen {
 
     @Override
     public void dispose() {
+        door_creek.dispose();
     }
 }
