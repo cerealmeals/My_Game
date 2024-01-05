@@ -79,6 +79,7 @@ public class GameScreen extends SuperScreen{
         drawEnemies();
         drawtextinfo();
 		game.batch.end();
+
         imputs();
         EnemieMovement();
         WinCondition();
@@ -290,7 +291,9 @@ public class GameScreen extends SuperScreen{
         if (game.time - EnemyMovement >= game.EnemySpeed){
             EnemyMovement = game.time;
             int i = 0;
+            //System.out.println();
             while(i < game.current_number_of_enemies){
+                //System.out.print("Enemy number " + i + " ");
                 int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
                 // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player, 3 = both 1 and 2
                 switch(flag){

@@ -92,7 +92,7 @@ public class SuperScreen implements Screen {
 
     public class GameScreenCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
 			    game.setScreen(new GameScreen(game));
 			    dispose();
 		    }
@@ -101,7 +101,7 @@ public class SuperScreen implements Screen {
 
     public class QuitCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
 			    Gdx.app.exit();
             }
         }
@@ -109,7 +109,7 @@ public class SuperScreen implements Screen {
     
     public class NewGameCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
                 game.NewGame();
 			    game.setScreen(new MainMenuScreen(game));
 			    dispose();
@@ -127,7 +127,7 @@ public class SuperScreen implements Screen {
 
     public class SettingsCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
 			    game.setScreen(new SetttingsScreen(game));
 			    dispose();
 		    }
@@ -136,7 +136,7 @@ public class SuperScreen implements Screen {
 
     public class ControlsCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
 			    game.setScreen(new ControlScreen(game));
 			    dispose();
 		    }
@@ -145,7 +145,7 @@ public class SuperScreen implements Screen {
 
     public class MainMenuCommand implements Command{
         public void execute(){
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
                 game.setScreen(new MainMenuScreen(game));
 			    dispose();
 		    }

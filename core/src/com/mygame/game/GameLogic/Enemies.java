@@ -69,15 +69,19 @@ public class Enemies {
             int diff = nextposition - current_Position;
             // set new position
             if(diff == -1){
+                //System.out.println("move left - Enemies/enemiesMove");
                 xpos--;
             }
             else if(diff == 1){
+                //System.out.println("move right - Enemies/enemiesMove");
                 xpos++;
             }
             else if(diff == grid.getMapWidth()){
+                //System.out.println("move up - Enemies/enemiesMove");
                 ypos++;
             }
             else if(diff == (-grid.getMapWidth())){
+                //System.out.println("move down - Enemies/enemiesMove");
                 ypos--;
             }
             else if(diff == 0){
