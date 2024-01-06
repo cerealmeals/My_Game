@@ -9,12 +9,12 @@ public class BonusChance extends PowerUp {
         Name = "More Explosions";
         description = "Increase the chance\nthat explosions\nare spawned. \nFrom: "+ 
         String.format("%.2f", (game.rewardClient.getbonusRewardChance()*100f)) + "%"
-         + "\nTo: " + String.format("%.2f", ((game.rewardClient.getbonusRewardChance()+0.05)*100f)) + "%";
+         + "\nTo: " + String.format("%.2f", ((game.rewardClient.getbonusRewardChance()+0.2)*100f)) + "%";
     }
 
     @Override
     public void clicked(){
-        game.rewardClient.setbonusRewardChance(game.rewardClient.getbonusRewardChance()+0.05f);
+        game.rewardClient.setbonusRewardChance(game.rewardClient.getbonusRewardChance()+0.2f);
     }
     
 }
