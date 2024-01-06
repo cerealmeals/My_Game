@@ -61,6 +61,7 @@ public class GameLogic extends Game {
 	}
 
 	public void NewGame(){
+		PowerReset();
 		rewardClient.clear();
 		rewardClient.setNumRewards(15);
 		grid = new Grid(mapHeight, mapWidth);
@@ -70,6 +71,15 @@ public class GameLogic extends Game {
 		resetEnemies();
 		EnemySpeed = 1;
 		player = new Player();
+	}
+
+	private void PowerReset(){
+		rewardClient.setbonusRewardChance(0.1f);
+		rewardClient.setpunishmentChance(0.3f);
+		rewardClient.coalScore = 10;
+		PlayerSpeed = 0.1f;
+		player.setFlameDamage(1);
+
 	}
 
 	private void resetEnemies(){
