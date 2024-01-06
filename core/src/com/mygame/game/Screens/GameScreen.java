@@ -41,8 +41,8 @@ public class GameScreen extends SuperScreen{
     public GameScreen(final GameLogic game){
         super(game);
         
-        wall = new Texture("wall.png");
-		path = new Texture("path.png");
+        wall = new Texture("path3.png");
+		path = new Texture("wall3.png");
 		reward = new Texture("reward.png");
 		punishment = new Texture("punishment.png");
 		superReward = new Texture("superReward.png");
@@ -158,8 +158,10 @@ public class GameScreen extends SuperScreen{
             }
             else if(game.time - explosionTracking < game.player.explosiontime){
                 for(int i = 0; i < 24; i++){
-                game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
-                    (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                    if(!(game.player.explosion_y[i] >= (game.mapHeight-1))){
+                        game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
+                         (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                    }
                 }
             }
             else{
