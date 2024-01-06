@@ -16,6 +16,7 @@ public class GameScreen extends SuperScreen{
 	int texture_Height;
     float EnemyMovement;
     float PlayerMovement;
+    float explosionTracking;
     
     Sound puddle;
     Sound Enemy_Contact;
@@ -78,6 +79,7 @@ public class GameScreen extends SuperScreen{
 		drawplayer();
         drawEnemies();
         drawtextinfo();
+        drawExposion();
 		game.batch.end();
 
         imputs();
@@ -142,6 +144,28 @@ public class GameScreen extends SuperScreen{
             else{
                 game.batch.draw(enemy_4, enemy.getXPos()*texture_Width, enemy.getYPos()*texture_Height, texture_Width, texture_Height);
             }
+        }
+    }
+
+    private void drawExposion(){
+        if(game.player.getExplosion()){
+        
+            if (game.time - explosionTracking < game.player.explosiontime/2){
+                for(int i = 0; i < 8; i++){
+                game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
+                    (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                }
+            }
+            else if(game.time - explosionTracking < game.player.explosiontime){
+                for(int i = 0; i < 24; i++){
+                game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
+                    (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                }
+            }
+            else{
+                game.player.setExplosion(false);
+            }
+            
         }
     }
 
@@ -256,6 +280,7 @@ public class GameScreen extends SuperScreen{
                 break;
             case 3:
                 explosion.play(game.volume);
+                explosionTracking = game.time;
                 break;
             default:
                 break;
@@ -294,7 +319,7 @@ public class GameScreen extends SuperScreen{
             //System.out.println();
             while(i < game.current_number_of_enemies){
                 //System.out.print("Enemy number " + i + " ");
-                int flag = game.enemies.get(i).enemiesMove(game.player, game.grid);
+                int flag = game.enemies.get(i).enemiesMove(game.player, game.grid, game.time, explosionTracking );
                 // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player, 3 = both 1 and 2
                 switch(flag){
                     case 1:

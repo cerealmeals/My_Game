@@ -8,6 +8,7 @@ import com.mygame.game.reward.RewardClient;
  */
 public class Player {
     
+    public float explosiontime = 2f;
     public Boolean alive;
     private int trailLength = 2; // Length of the player's trail.
     private int xpos[]; // Array holding the x-coordinates of the player's positions.
@@ -16,6 +17,8 @@ public class Player {
     private int rewards = 0; // Count of rewards collected by the player.
     private boolean explosion = false;
     private int FlameDamage = 1;
+    public int explosion_x[];
+    public int explosion_y[];
     /**
      * Default constructor for Player class.
      * Initializes player's initial position and other attributes.
@@ -35,7 +38,7 @@ public class Player {
      */
 
     public int movePlayer(char key, Grid grid) {
-
+        
         // Moves the player according to the key input after checking for walls
         if (key == 'd' && grid.getGrid()[ypos[0]][xpos[0] + 1] != 'w') {
             storePrev();
@@ -51,18 +54,22 @@ public class Player {
             ypos[0] += 1;
         }
 
+        int current_x = xpos[0];
+        int current_y = ypos[0];
+
+
         /**
         * Adds rewards to the score of the player accordingly
         * Sets the reward character to a path after it is collected
         */ 
-        return interact_with_reward(grid);
+        return interact_with_reward(grid, current_x, current_y);
     }
 
     /**
     * Adds rewards to the score of the player accordingly
     * Sets the reward character to a path after it is collected
     */ 
-    private int interact_with_reward(Grid grid){
+    private int interact_with_reward(Grid grid, int x, int y){
         // 0 for path, 1 for coal/rewards, 2 for puddles/punishment, 3 for bonus reward.
         int sounds = 0;
         char cellType = grid.getGrid()[ypos[0]][xpos[0]];
@@ -79,6 +86,8 @@ public class Player {
             if(cellType == 'b'){
                 sounds = 3;
                 explosion = true;
+                explosion_x = new int[]{x+1,x+0,x-1,x-1,x-1,x+0,x+1,x+1,x-2,x-2,x-2,x-2,x-2,x-1,x+0,x+1,x+2,x+2,x+2,x+2,x+2,x+1,x+0,x-1};
+                explosion_y = new int[]{y+1,y+1,y+1,y+0,y-1,y-1,y-1,y+0,y+2,y+1,y+0,y-1,y-2,y-2,y-2,y-2,y-2,y-1,y+0,y+1,y+2,y+2,y+2,y+2};
             }
             RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
             score += rewardClient.collectReward( xpos[0], ypos[0]);
@@ -209,6 +218,10 @@ public class Player {
 
     public boolean getExplosion(){
         return explosion;
+    }
+
+    public void setExplosion(Boolean flag){
+        explosion = flag;
     }
 
     public int getFlameDamage(){
