@@ -226,38 +226,6 @@ public class GameScreen extends SuperScreen{
     
     }
 
-    private void playerMovement1(){
-        int sound_check = 0;
-        Boolean flag = false;
-        if(game.time - PlayerMovement >= game.PlayerSpeed){
-            PlayerMovement = game.time;
-            flag = true;
-        }
-        if(Gdx.input.isKeyJustPressed(Keys.LEFT)||Gdx.input.isKeyJustPressed(Keys.A) ||
-            flag&&(Gdx.input.isKeyPressed(Keys.LEFT)||Gdx.input.isKeyPressed(Keys.A)))
-        {
-            sound_check = game.player.movePlayer('a', game.grid);
-            afterPlayerMovement(sound_check);
-        }
-        if(Gdx.input.isKeyJustPressed(Keys.RIGHT)||Gdx.input.isKeyJustPressed(Keys.D)||
-            flag&&(Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.D)))
-        {
-            sound_check = game.player.movePlayer('d', game.grid);
-            afterPlayerMovement(sound_check);
-        }
-        if(Gdx.input.isKeyJustPressed(Keys.UP)||Gdx.input.isKeyJustPressed(Keys.W)||
-            flag&&(Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.W))){
-            sound_check = game.player.movePlayer('w', game.grid);
-            afterPlayerMovement(sound_check);
-        }
-        if(Gdx.input.isKeyJustPressed(Keys.DOWN)||Gdx.input.isKeyJustPressed(Keys.S)||
-            flag&&(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.S))){
-            sound_check = game.player.movePlayer('s', game.grid);
-            afterPlayerMovement(sound_check);
-        }
-        flag = false;
-    }
-
     private void Pause(){
         if(Gdx.input.isKeyJustPressed(Keys.P)||Gdx.input.isKeyJustPressed(Keys.ESCAPE)||Gdx.input.isKeyJustPressed(Keys.SPACE)){
             game.setScreen(new PauseScreen(this.game));

@@ -1,12 +1,14 @@
 package com.mygame.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygame.game.GameLogic.GameLogic;
 
 public class SetttingsScreen extends SuperScreen {
 
+    Sound puddle;
     Texture play;
     Texture play_c;
     Texture menu;
@@ -28,7 +30,7 @@ public class SetttingsScreen extends SuperScreen {
         left_c = new Texture("buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png");
         right = new Texture("buttons/Square Buttons/Square Buttons/Next Square Button.png");
         right_c = new Texture("buttons/Square Buttons/Colored Square Buttons/Next col_Square Button.png");
-
+        puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle2.wav"));
     }
     
     @Override
@@ -50,6 +52,7 @@ public class SetttingsScreen extends SuperScreen {
         draw_Button(left, left_c, volume_down_x, volume_y, new DecreaseVolume());
         draw_Button(right, right_c, volume_up_x, volume_y, new IncreaseVolume());
 
+        game.font.draw(game.batch, "Volume", (Gdx.graphics.getWidth()/2) - 100, (Gdx.graphics.getHeight()*4/5)+100);
         game.font.draw(game.batch, "" + String.format("%.0f",game.volume*100) + "%",
              (Gdx.graphics.getWidth()/2) - 65 , Gdx.graphics.getHeight()*4/5);
 
@@ -73,6 +76,7 @@ public class SetttingsScreen extends SuperScreen {
         left_c.dispose();
         right.dispose();
         right_c.dispose();
+        puddle.dispose();
     }
 
     public class IncreaseVolume implements Command{
@@ -85,6 +89,7 @@ public class SetttingsScreen extends SuperScreen {
                     fine += 10;
                     game.volume = (float)fine / 100f;
                 }
+                puddle.play(game.volume);
             }
         }
 
@@ -100,6 +105,7 @@ public class SetttingsScreen extends SuperScreen {
                     fine -= 10;
                     game.volume = (float)fine / 100f;
                 }
+                puddle.play(game.volume);
             }
         }
 
