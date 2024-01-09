@@ -16,7 +16,7 @@ public class GameOverScreen extends SuperScreen {
 
     public GameOverScreen(final GameLogic game){
         super(game);
-        New_game = new Texture("buttons/Large Buttons/Large Buttons/New Game Button.png");
+        New_game = new Texture("buttons/Large Buttons/Large Buttons/New game Button.png");
         New_game_c = new Texture("buttons/Large Buttons/Colored Large Buttons/New Game col_Button.png");
         quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
         quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");

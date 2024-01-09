@@ -56,7 +56,7 @@ public class GameScreen extends SuperScreen{
         puddle = Gdx.audio.newSound(Gdx.files.internal("Sounds/puddle2.wav"));
         Enemy_Contact = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemy.mp3"));
         Enemy_death = Gdx.audio.newSound(Gdx.files.internal("Sounds/Cloud_death.wav"));
-        coal = Gdx.audio.newSound(Gdx.files.internal("Sounds/coal.wav"));
+        coal = Gdx.audio.newSound(Gdx.files.internal("Sounds/Coal.wav"));
         explosion = Gdx.audio.newSound(Gdx.files.internal("Sounds/explosion.wav"));
 		
     }
