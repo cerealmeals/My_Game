@@ -53,7 +53,7 @@ public class PowerUpClient {
             type = "Rewards";
         }
         else if(pick < percent*6){
-            type = "hunter";
+            type = "Hunter";
         }
 
         PowerUp power = PowerUpFactory.createPowerUp(game, type);

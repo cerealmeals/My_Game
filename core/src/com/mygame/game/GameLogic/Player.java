@@ -1,5 +1,7 @@
 package com.mygame.game.GameLogic;
 
+import java.util.ArrayList;
+
 import com.mygame.game.reward.RewardClient;
 
 /**
@@ -15,11 +17,9 @@ public class Player {
     private int ypos[]; // Array holding the y-coordinates of the player's positions.
     private int score = 0; // Player's score in the game.
     private int rewards = 0; // Count of rewards collected by the player.
-    private boolean explosion = false;
     private int FlameDamage = 1;
-    public int explosion_x[];
-    public int explosion_y[];
     public int enemy_kill_value = 0;
+    public ArrayList<Explosion> explosions;
     /**
      * Default constructor for Player class.
      * Initializes player's initial position and other attributes.
@@ -28,6 +28,7 @@ public class Player {
         xpos = new int[]{1, -1}; // Default x-coordinates for player positions.
         ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
         alive = true;
+        explosions = new ArrayList<Explosion>();
     }
 
     /**
@@ -86,9 +87,7 @@ public class Player {
             }
             if(cellType == 'b'){
                 sounds = 3;
-                explosion = true;
-                explosion_x = new int[]{x+1,x+0,x-1,x-1,x-1,x+0,x+1,x+1,x-2,x-2,x-2,x-2,x-2,x-1,x+0,x+1,x+2,x+2,x+2,x+2,x+2,x+1,x+0,x-1};
-                explosion_y = new int[]{y+1,y+1,y+1,y+0,y-1,y-1,y-1,y+0,y+2,y+1,y+0,y-1,y-2,y-2,y-2,y-2,y-2,y-1,y+0,y+1,y+2,y+2,y+2,y+2};
+                explosions.add(new Explosion(x, y));
             }
             RewardClient rewardClient = RewardClient.getInstance(grid.getMapHeight(), grid.getMapWidth());
             score += rewardClient.collectReward( xpos[0], ypos[0]);
@@ -217,14 +216,6 @@ public class Player {
         return trailLength;
     }
 
-    public boolean getExplosion(){
-        return explosion;
-    }
-
-    public void setExplosion(Boolean flag){
-        explosion = flag;
-    }
-
     public int getFlameDamage(){
         return FlameDamage;    
     }
@@ -238,6 +229,7 @@ public class Player {
         ypos = new int[]{1, -1}; // Default y-coordinates for player positions.
         alive = true;
         trailLength = 2;
-        rewards = 0;  
+        rewards = 0; 
+        explosions.clear();
     }
 }

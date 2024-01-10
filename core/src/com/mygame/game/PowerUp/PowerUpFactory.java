@@ -20,6 +20,8 @@ public class PowerUpFactory {
                 return new CoalIsWorthMore(game);
             case "Hunter":
                 return new Hunter(game);
+            case "Mapsize":
+                return new mapsize(game);
             default:
                 throw new IllegalArgumentException("Unknown reward type: " + type);
         }

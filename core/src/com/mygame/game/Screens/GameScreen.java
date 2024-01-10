@@ -16,7 +16,6 @@ public class GameScreen extends SuperScreen{
 	int texture_Height;
     float EnemyMovement;
     float PlayerMovement;
-    float explosionTracking;
     
     Sound puddle;
     Sound Enemy_Contact;
@@ -148,24 +147,24 @@ public class GameScreen extends SuperScreen{
     }
 
     private void drawExposion(){
-        if(game.player.getExplosion()){
+        for(int j = 0; j < game.player.explosions.size(); j++){
         
-            if (game.time - explosionTracking < game.player.explosiontime/2){
+            if (game.time - game.player.explosions.get(j).explosion_time < game.player.explosiontime/2){
                 for(int i = 0; i < 8; i++){
-                game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
-                    (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                game.batch.draw(trail_yellow, (game.player.explosions.get(j).explosion_x[i])*texture_Width,
+                    (game.player.explosions.get(j).explosion_y[i])*texture_Height, texture_Width, texture_Height);
                 }
             }
-            else if(game.time - explosionTracking < game.player.explosiontime){
+            else if(game.time - game.player.explosions.get(j).explosion_time < game.player.explosiontime){
                 for(int i = 0; i < 24; i++){
-                    if(!(game.player.explosion_y[i] >= (game.mapHeight-1))){
-                        game.batch.draw(trail_yellow, (game.player.explosion_x[i])*texture_Width,
-                         (game.player.explosion_y[i])*texture_Height, texture_Width, texture_Height);
+                    if(!(game.player.explosions.get(j).explosion_y[i] >= (game.mapHeight-1))){
+                        game.batch.draw(trail_yellow, (game.player.explosions.get(j).explosion_x[i])*texture_Width,
+                         (game.player.explosions.get(j).explosion_y[i])*texture_Height, texture_Width, texture_Height);
                     }
                 }
             }
             else{
-                game.player.setExplosion(false);
+                game.player.explosions.remove(j);
             }
             
         }
@@ -250,7 +249,7 @@ public class GameScreen extends SuperScreen{
                 break;
             case 3:
                 explosion.play(game.volume);
-                explosionTracking = game.time;
+                game.player.explosions.getLast().explosion_time = game.time;
                 break;
             default:
                 break;
@@ -289,7 +288,7 @@ public class GameScreen extends SuperScreen{
             //System.out.println();
             while(i < game.current_number_of_enemies){
                 //System.out.print("Enemy number " + i + " ");
-                int flag = game.enemies.get(i).enemiesMove(game.player, game.grid, game.time, explosionTracking );
+                int flag = game.enemies.get(i).enemiesMove(game.player, game.grid, game.time);
                 // flag can be: 0 = do nothing, 1 = enemy died, 2 = enemy moved onto player, 3 = both 1 and 2
                 switch(flag){
                     case 1:

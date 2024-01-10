@@ -54,7 +54,7 @@ public class Enemies {
      * @param player  The player object in the game.
      * @param grid2   The game grid where the enemy moves.
      */
-    public int enemiesMove(Player player, Grid grid, float time, float explosionTracking){
+    public int enemiesMove(Player player, Grid grid, float time){
         int returnValue = 0;
         int i = 0;
         if(!(ypos == player.getYPos()[i] && xpos == player.getXPos()[i])){        
@@ -107,11 +107,11 @@ public class Enemies {
                 // i = player.getTrailLength();
             }
         }
-        if(player.getExplosion()){
+        for(int k = 0; k < player.explosions.size(); k++){
         
-            if (time - explosionTracking < player.explosiontime/2){
+            if (time - player.explosions.get(k).explosion_time < player.explosiontime/2){
                 for(int j = 0; j < 8; j++){
-                    if(ypos == player.explosion_y[j] && xpos == player.explosion_x[j]){
+                    if(ypos == player.explosions.get(k).explosion_y[j] && xpos == player.explosions.get(k).explosion_x[j]){
                         // if flames are there take damage.
                         health -= player.getFlameDamage();
                         // maybe only get damaged once
@@ -119,9 +119,9 @@ public class Enemies {
                     }
                 }
             }
-            else if(time - explosionTracking < player.explosiontime){
+            else if(time - player.explosions.get(k).explosion_time < player.explosiontime){
                 for(int j = 0; j < 24; j++){
-                    if(ypos == player.explosion_y[j] && xpos == player.explosion_x[j]){
+                    if(ypos == player.explosions.get(k).explosion_y[j] && xpos == player.explosions.get(k).explosion_x[j]){
                         // if flames are there take damage.
                         health -= player.getFlameDamage();
                         // maybe only get damaged once

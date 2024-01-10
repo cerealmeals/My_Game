@@ -18,10 +18,12 @@ public class GameLogic extends Game {
 	public float time = 0;
 	public float EnemySpeed = 1f;
 	public float PlayerSpeed = 0.1f;
+	public int initial_mapHeight = 10;
 	public int mapHeight = 10;
 	public int mapWidth = (int)(1.5f*mapHeight); 
     public Grid grid = new Grid(mapHeight, mapWidth);
-    public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth);
+	public int initial_number_of_rewards = 15;
+    public RewardClient rewardClient = RewardClient.getInstance(mapHeight, mapWidth, initial_number_of_rewards);
 	public PowerUpClient powerUpClient = PowerUpClient.getInstance();
     public Player player = new Player();
 
@@ -51,6 +53,7 @@ public class GameLogic extends Game {
 	}
 
 	public void LevelUp(){
+		mapWidth = (int)(1.5f*mapHeight); 
 		grid = new Grid(mapHeight, mapWidth);
 		level++;
 		initial_number_of_enemies += 2;
@@ -63,7 +66,9 @@ public class GameLogic extends Game {
 	public void NewGame(){
 		PowerReset();
 		rewardClient.clear();
-		rewardClient.setNumRewards(15);
+		rewardClient.setNumRewards(initial_number_of_rewards);
+		mapHeight = initial_mapHeight;
+		mapWidth = (int)(1.5f*mapHeight);
 		grid = new Grid(mapHeight, mapWidth);
 		level = 1;
 		time = 0;

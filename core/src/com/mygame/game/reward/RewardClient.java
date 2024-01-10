@@ -28,6 +28,14 @@ public class RewardClient {
      *
      * @param mapSize The size of the game board.
      */
+    private RewardClient(int height, int width, int initial) {
+        this.mapHeight = height;
+        this.mapWidth = width;
+        this.number_of_rewards = initial;
+        this.rewards = new ArrayList<>();
+        random = new Random();
+    }
+
     private RewardClient(int height, int width) {
         this.mapHeight = height;
         this.mapWidth = width;
@@ -41,6 +49,13 @@ public class RewardClient {
      * @param mapSize The size of the game board.
      * @return The instance of RewardClient.
      */
+    public static RewardClient getInstance(int height, int width, int initial) {
+        if (instance == null) {
+            instance = new RewardClient(height, width, initial);
+        }
+        return instance;
+    }
+
     public static RewardClient getInstance(int height, int width) {
         if (instance == null) {
             instance = new RewardClient(height, width);
