@@ -21,7 +21,7 @@ public class RewardClient {
 
     // Used to randomly generate rewards and punishments
     float bonusRewardChance = 0.1f;
-    float punishmentChance = 0.3f;
+    float punishmentChance = 0.2f;
 
     /**
      * Constructor for the RewardClient class.

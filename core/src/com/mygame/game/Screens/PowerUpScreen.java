@@ -49,7 +49,7 @@ public class PowerUpScreen extends SuperScreen {
         Gdx.input.getY() < Gdx.graphics.getHeight() -100 && 
         Gdx.input.getY() > 100)
         {
-            game.font.draw(game.batch, power.description, position_x, Gdx.graphics.getHeight()*2/3);
+            game.font.draw(game.batch, power.description, position_x+50, Gdx.graphics.getHeight()*3/5);
             if (Gdx.input.justTouched()) {
                 power.clicked();
                 game.setScreen(new LevelOverScreen(game));
@@ -57,7 +57,7 @@ public class PowerUpScreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, power.Name, position_x, Gdx.graphics.getHeight()/2);
+            game.font.draw(game.batch, power.Name, position_x+50, Gdx.graphics.getHeight()/2);
             
         }
     }

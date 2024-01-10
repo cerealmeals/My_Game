@@ -12,7 +12,7 @@ public class mapsize extends PowerUp {
 
     @Override
     public void clicked(){
-        game.mapHeight += 5;
+        game.mapHeight += 4;
     }
     
 }

@@ -11,15 +11,15 @@ public class GameOverScreen extends SuperScreen {
 
     Texture New_game;
     Texture New_game_c;
-    Texture quit;
-    Texture quit_c;
+    Texture menu;
+    Texture menu_c;
 
     public GameOverScreen(final GameLogic game){
         super(game);
         New_game = new Texture("buttons/Large Buttons/Large Buttons/New game Button.png");
         New_game_c = new Texture("buttons/Large Buttons/Colored Large Buttons/New Game col_Button.png");
-        quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
-        quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");
+        menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
+        menu_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Menu col_Button.png");
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GameOverScreen extends SuperScreen {
 
 		game.batch.begin();
 		
-        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
+        int center_x = Gdx.graphics.getWidth() /2 - menu.getWidth()/2;
         int New_game_y = Gdx.graphics.getHeight() - New_game.getHeight() - texture_Height;
         drawtextinfo();
         
@@ -41,9 +41,9 @@ public class GameOverScreen extends SuperScreen {
 
         //setting button
 
-        int quit_y = 0;
-        //quit button
-        draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
+        int menu_y = 0;
+        //menu button
+        draw_Button(menu, menu_c, center_x, menu_y, new MainMenuCommand());
 
         game.batch.end();
 
@@ -53,8 +53,8 @@ public class GameOverScreen extends SuperScreen {
     public void dispose() {
         New_game.dispose();
         New_game_c.dispose();
-        quit.dispose();
-        quit_c.dispose();
+        menu.dispose();
+        menu_c.dispose();
     }
     
 }
