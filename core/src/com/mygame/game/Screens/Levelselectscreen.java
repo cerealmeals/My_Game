@@ -31,7 +31,7 @@ public class Levelselectscreen extends SuperScreen {
         game.font.getData().setScale(2);
 
         for(int i = 0; i < 3; i++){
-        draw_level_option(i*Gdx.graphics.getWidth()/3);
+        draw_level_option(i*Gdx.graphics.getWidth()/3, level, i);
         }
 
         int center_x = Gdx.graphics.getWidth() /2 - menu.getWidth()/2;
@@ -45,7 +45,7 @@ public class Levelselectscreen extends SuperScreen {
         game.batch.end();
     }
 
-    private void draw_level_option(int x){
+    private void draw_level_option(int x, Level level, int i){
 
     }
 
