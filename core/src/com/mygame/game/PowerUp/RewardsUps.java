@@ -6,9 +6,8 @@ public class RewardsUps extends PowerUp{
 
     public RewardsUps(GameLogic g) {
         super(g);
-        Name = "More Rewards";
-        description = "Increase the number\nof rewards\nFrom: "+ game.rewardClient.getNumRewards()
-         + "\nTo: " + (game.rewardClient.getNumRewards()+20) + "\nPlus the usual increase";
+        Name = "More Stuff";
+        description = "Increase the number\nof spawns on\nthe map (not enemies)";
     }
     
     @Override

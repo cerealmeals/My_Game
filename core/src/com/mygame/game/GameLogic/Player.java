@@ -19,6 +19,7 @@ public class Player {
     private int FlameDamage = 1;
     public int explosion_x[];
     public int explosion_y[];
+    public int enemy_kill_value = 0;
     /**
      * Default constructor for Player class.
      * Initializes player's initial position and other attributes.

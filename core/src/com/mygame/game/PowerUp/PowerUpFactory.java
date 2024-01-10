@@ -18,6 +18,8 @@ public class PowerUpFactory {
                 return new RewardsUps(game);
             case "Coal":
                 return new CoalIsWorthMore(game);
+            case "Hunter":
+                return new Hunter(game);
             default:
                 throw new IllegalArgumentException("Unknown reward type: " + type);
         }

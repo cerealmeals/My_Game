@@ -10,7 +10,7 @@ public class PowerUpClient {
     
     private static PowerUpClient instance = null;
     Random random;
-    int number_of_power_up = 5;
+    int number_of_power_up = 6;
     float percent;
     public List<PowerUp> choices;
 
@@ -52,9 +52,15 @@ public class PowerUpClient {
         else if(pick < percent*5){
             type = "Rewards";
         }
+        else if(pick < percent*6){
+            type = "hunter";
+        }
 
         PowerUp power = PowerUpFactory.createPowerUp(game, type);
         if(check_If_Power_Up_is_already_Chosen(power)){
+            HelpergeneratePowerUps(game);
+        }
+        else if(check_If_power_up_is_legal(power, game)){
             HelpergeneratePowerUps(game);
         }
         else{
@@ -70,6 +76,22 @@ public class PowerUpClient {
         }
         return false;
     }
+
+    private Boolean check_If_power_up_is_legal(PowerUp power, GameLogic game){
+        if(power instanceof BonusChance){
+            if(game.rewardClient.getbonusRewardChance() >= 0.8f){
+                return true;
+            }
+        }
+        if(power instanceof PunishmentChance){
+            if(game.rewardClient.getpunishmentChance() <= 0.05f){
+                return false;
+            }
+        }
+        return false;
+    }
+
+
 
     public void clear(){
         choices.clear();

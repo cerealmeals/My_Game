@@ -50,7 +50,7 @@ public class PowerUpScreen extends SuperScreen {
         Gdx.input.getY() > 100)
         {
             game.font.draw(game.batch, power.description, position_x, Gdx.graphics.getHeight()*2/3);
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
                 power.clicked();
                 game.setScreen(new LevelOverScreen(game));
                 dispose();

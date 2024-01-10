@@ -7,8 +7,7 @@ public class CoalIsWorthMore extends PowerUp {
     public CoalIsWorthMore(GameLogic g) {
         super(g);
         Name = "Better Coal";
-        description = "Increase the score\nof collecting coal \nFrom: "+ 
-        game.rewardClient.coalScore + "\nTo: " + (game.rewardClient.coalScore+5);
+        description = "Increase the score\nof collecting coal";
     }
 
     @Override

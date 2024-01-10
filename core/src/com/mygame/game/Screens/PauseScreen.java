@@ -9,15 +9,15 @@ public class PauseScreen extends SuperScreen {
 
     Texture Resume;
     Texture Resume_c;
-    Texture quit;
-    Texture quit_c;
+    Texture menu;
+    Texture menu_c;
 
     public PauseScreen(GameLogic game) {
         super(game);
         Resume = new Texture("buttons/Large Buttons/Large Buttons/Resume Button.png");
         Resume_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Resume col_Button.png");
-        quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
-        quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");
+        menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
+        menu_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Menu col_Button.png");
     
     }
     
@@ -30,7 +30,7 @@ public class PauseScreen extends SuperScreen {
 
 		game.batch.begin();
 		
-        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
+        int center_x = Gdx.graphics.getWidth() /2 - menu.getWidth()/2;
         int Resume_y = Gdx.graphics.getHeight() - Resume.getHeight() - texture_Height;
         drawtextinfo();
         
@@ -39,9 +39,9 @@ public class PauseScreen extends SuperScreen {
 
         //setting button
 
-        int quit_y = 0;
-        //quit button
-        draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
+        int menu_y = 0;
+        //menu button
+        draw_Button(menu, menu_c, center_x, menu_y, new MainMenuCommand());
 
         game.batch.end();
 
@@ -49,8 +49,8 @@ public class PauseScreen extends SuperScreen {
 
     @Override
     public void dispose() {
-        quit.dispose();
-        quit_c.dispose();
+        menu.dispose();
+        menu_c.dispose();
         Resume.dispose();
         Resume_c.dispose();
     }

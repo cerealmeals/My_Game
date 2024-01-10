@@ -14,7 +14,6 @@ public class Enemies {
     private int xpos; // The x-coordinate of the enemy's position on the grid.
     private int ypos; // The y-coordinate of the enemy's position on the grid.
     private Random rn = new Random(); // Random number generator for enemy movement.
-    long time = System.currentTimeMillis(); // Time reference variables for enemy movement.
     /**
      * Default constructor for P_Enemies class.
      * Initializes the enemy's health and default position.
@@ -135,6 +134,7 @@ public class Enemies {
         //check if health is zero
         if(health <= 0){
             returnValue += 1;
+            player.setScore(player.getScore()+player.enemy_kill_value);
         }
 
         return returnValue;    

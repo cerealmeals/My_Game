@@ -7,13 +7,12 @@ public class FlameDamage extends PowerUp {
     public FlameDamage(GameLogic g) {
         super(g);
         Name = "Flame Damage";
-        description = "Increase the damage\nyour fire trail does\nto enemies \nFrom: "+ game.player.getFlameDamage()
-         + "\nTo: " + (game.player.getFlameDamage()+1);
+        description = "Your fire trail\ninstantly kills enemies";
     }
 
     @Override
     public void clicked(){
-        game.player.setFlameDamage(game.player.getFlameDamage()+1);
+        game.player.setFlameDamage(game.enemy_HP);
     }
     
 }

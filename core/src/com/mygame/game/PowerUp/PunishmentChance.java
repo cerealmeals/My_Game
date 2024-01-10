@@ -7,9 +7,7 @@ public class PunishmentChance extends PowerUp{
     public PunishmentChance(GameLogic g) {
         super(g);
         Name = "Less Puddles";
-        description = "Decrease the chance\nthat puddles\nare spawned. \nFrom: "+ 
-        String.format("%.2f", (game.rewardClient.getpunishmentChance()*100f)) + "%"
-         + "\nTo: " + String.format("%.2f", (game.rewardClient.getpunishmentChance()*0.6f*100f)) + "%";
+        description = "Decrease the chance\nthat puddles\nare spawned.";
     }
 
     @Override

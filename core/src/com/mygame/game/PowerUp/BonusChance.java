@@ -7,9 +7,7 @@ public class BonusChance extends PowerUp {
     public BonusChance(GameLogic g) {
         super(g);
         Name = "More Explosions";
-        description = "Increase the chance\nthat explosions\nare spawned. \nFrom: "+ 
-        String.format("%.2f", (game.rewardClient.getbonusRewardChance()*100f)) + "%"
-         + "\nTo: " + String.format("%.2f", ((game.rewardClient.getbonusRewardChance()+0.2)*100f)) + "%";
+        description = "Increase the chance\nthat explosions\nare spawned.";
     }
 
     @Override
