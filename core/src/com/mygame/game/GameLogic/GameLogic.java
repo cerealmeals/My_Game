@@ -14,6 +14,7 @@ public class GameLogic extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	
+	public int winCondition = 1000; 
 	public float volume = 1.0f;
 	public float time = 0;
 	public float EnemySpeed = 1f;

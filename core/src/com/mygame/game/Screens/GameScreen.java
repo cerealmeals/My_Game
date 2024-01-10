@@ -317,7 +317,7 @@ public class GameScreen extends SuperScreen{
     }
 
     private void WinCondition(){
-        if(game.player.getScore() >= 1000){
+        if(game.player.getScore() >= game.winCondition){
             game.setScreen(new WinScreen(this.game));
             dispose();
         }

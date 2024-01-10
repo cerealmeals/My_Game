@@ -88,6 +88,11 @@ public class PowerUpClient {
                 return false;
             }
         }
+        if(power instanceof FlameDamage){
+            if(game.player.getFlameDamage() >= game.enemy_HP){
+                return false;
+            }
+        }
         return false;
     }
 
