@@ -30,9 +30,8 @@ public class WinScreen extends SuperScreen {
 		game.batch.setProjectionMatrix(camera.combined);
 
 		game.batch.begin();
-		
-        game.font.draw(game.batch, "CONGRATULATION\n        YOU WIN\nWith a time of " +
-         String.format("%.2f", game.time), (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()-100);
+		game.layout.setText(game.font, "CONGRATULATION\n        YOU WIN\nWith a time of " + String.format("%.2f", game.time));
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()+(game.layout.height/2)-(Gdx.graphics.getHeight() -((quit.getHeight()*2)+50))/2);
 
         int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
         int New_game_y = quit.getHeight()+50;

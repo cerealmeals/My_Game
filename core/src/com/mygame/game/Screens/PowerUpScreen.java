@@ -27,8 +27,8 @@ public class PowerUpScreen extends SuperScreen {
 		game.batch.setProjectionMatrix(camera.combined);
 
 		game.batch.begin();
-		
-        game.font.draw(game.batch, "SELECT A POWER UP", (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()-1);
+        game.layout.setText(game.font, "SELECT A POWER UP");
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-100+game.layout.height/2);
     
         game.font.getData().setScale(2);
 
@@ -44,12 +44,16 @@ public class PowerUpScreen extends SuperScreen {
 
     public void draw_Power_Up(int position_x, PowerUp power){
 
+        int third_x = Gdx.graphics.getWidth()/3;
+        int half_y = Gdx.graphics.getHeight()/2;
+
         if(Gdx.input.getX() > position_x && 
-        Gdx.input.getX() < position_x + Gdx.graphics.getWidth()/3 && 
-        Gdx.input.getY() < Gdx.graphics.getHeight() -100 && 
-        Gdx.input.getY() > 100)
+        Gdx.input.getX() < position_x + third_x && 
+        Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
+        Gdx.input.getY() > 200)
         {
-            game.font.draw(game.batch, power.description, position_x+50, Gdx.graphics.getHeight()*3/5);
+            game.layout.setText(game.font, power.description);
+            game.font.draw(game.batch, game.layout, position_x+(third_x/2)-(game.layout.width/2), half_y + game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 power.clicked();
                 game.setScreen(new LevelOverScreen(game));
@@ -57,7 +61,8 @@ public class PowerUpScreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, power.Name, position_x+50, Gdx.graphics.getHeight()/2);
+            game.layout.setText(game.font, power.Name);
+            game.font.draw(game.batch, game.layout, position_x+(third_x/2)-(game.layout.width/2), half_y + game.layout.height/2);
             
         }
     }

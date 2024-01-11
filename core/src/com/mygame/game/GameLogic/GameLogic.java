@@ -3,6 +3,7 @@ package com.mygame.game.GameLogic;
 import java.util.ArrayList;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygame.game.PowerUp.PowerUpClient;
 import com.mygame.game.Screens.MainMenuScreen;
@@ -13,6 +14,7 @@ public class GameLogic extends Game {
 
 	public SpriteBatch batch;
 	public BitmapFont font;
+	public GlyphLayout layout;
 	
 	public int winCondition = 1000; 
 	public float volume = 1.0f;
@@ -45,6 +47,7 @@ public class GameLogic extends Game {
 	public void create () {
 		batch = new SpriteBatch(); 
 		font = new BitmapFont();
+		layout = new GlyphLayout();
 		
 		font.getData().setScale(scale);
 		for(int i = 0; i < initial_number_of_enemies; i++){

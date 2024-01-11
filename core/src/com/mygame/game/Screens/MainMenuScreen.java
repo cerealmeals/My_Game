@@ -51,7 +51,8 @@ public class MainMenuScreen extends SuperScreen {
 
         //draw title
         game.font.getData().setScale(7);
-        game.font.draw(game.batch, "The Best Title", (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()*4/5);
+        game.layout.setText(game.font, "The Best Title");
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()+(game.layout.height/2)-(Gdx.graphics.getHeight() -((quit.getHeight()*2)+50))/2);
         game.font.getData().setScale(game.scale);
 
         //play button

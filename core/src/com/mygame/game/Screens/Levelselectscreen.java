@@ -14,7 +14,7 @@ public class Levelselectscreen extends SuperScreen {
         super(game);
         menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
         menu_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Menu col_Button.png");
-   
+        
     }
     
     @Override
@@ -25,22 +25,24 @@ public class Levelselectscreen extends SuperScreen {
 		game.batch.setProjectionMatrix(camera.combined);
 
 		game.batch.begin();
-		
-        game.font.draw(game.batch, "SELECT A Level", (Gdx.graphics.getWidth()/3)-10, Gdx.graphics.getHeight()-100);
+        game.font.getData().setScale(7);
+		game.layout.setText(game.font, "SELECT A Level");
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-100+game.layout.height/2);
     
         game.font.getData().setScale(2);
         int position_x0 = 0;
         int position_x1 = Gdx.graphics.getWidth()/4;
         int position_x2 = Gdx.graphics.getWidth()*2/4;
         int position_x3 = Gdx.graphics.getWidth()*3/4;
-        int position_y = Gdx.graphics.getHeight()*3/5;
+        int half_y = (Gdx.graphics.getHeight())/2;
 
         if(Gdx.input.getX() > position_x0 && 
         Gdx.input.getX() < position_x0 + position_x1 && 
-        Gdx.input.getY() < Gdx.graphics.getHeight() -100 && 
-        Gdx.input.getY() > 100)
+        Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
+        Gdx.input.getY() > 200)
         {
-            game.font.draw(game.batch, "A starter level\nwith one enemy to\nstart and a 200\npoint win condition", position_x0+10, position_y);
+            game.layout.setText(game.font, "A starter level\nwith one enemy to\nstart and a 200\npoint win condition");
+            game.font.draw(game.batch, game.layout, position_x0+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 game.initial_number_of_enemies = 1;
                 game.winCondition = 200;
@@ -50,16 +52,19 @@ public class Levelselectscreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, "Tutorial", position_x0+100, Gdx.graphics.getHeight()/2);
+            game.layout.setText(game.font, "Tutorial");
+            game.font.draw(game.batch, game.layout, position_x0+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             
         }
-
+        
+        // Quick level
         if(Gdx.input.getX() > position_x1 && 
         Gdx.input.getX() < position_x1 + position_x1 && 
-        Gdx.input.getY() < Gdx.graphics.getHeight() -150 && 
-        Gdx.input.getY() > 150)
+        Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
+        Gdx.input.getY() > 200)
         {
-            game.font.draw(game.batch, "Two enemies to \nstart and a 1000\npoint win condition", position_x1+10, position_y);
+            game.layout.setText(game.font, "Two enemies to \nstart and a 1000\npoint win condition");
+            game.font.draw(game.batch, game.layout, position_x1+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 game.initial_number_of_enemies = 2;
                 game.winCondition = 1000;
@@ -69,16 +74,19 @@ public class Levelselectscreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, "Quick", position_x1+100, Gdx.graphics.getHeight()/2);
+            game.layout.setText(game.font, "Quick");
+            game.font.draw(game.batch, game.layout, position_x1+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             
         }
 
+        //Medium Level
         if(Gdx.input.getX() > position_x2 && 
         Gdx.input.getX() < position_x2 + position_x1 && 
         Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
         Gdx.input.getY() > 200)
         {
-            game.font.draw(game.batch, "Three enemies to\nstart and a 5000\npoint win condition", position_x2+10, position_y);
+            game.layout.setText(game.font, "Three enemies to\nstart and a 5000\npoint win condition");
+            game.font.draw(game.batch, game.layout, position_x2+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 game.initial_number_of_enemies = 3;
                 game.winCondition = 5000;
@@ -88,8 +96,8 @@ public class Levelselectscreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, "Medium", position_x2+100, Gdx.graphics.getHeight()/2);
-            
+            game.layout.setText(game.font, "Medium");
+            game.font.draw(game.batch, game.layout, position_x2+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
         }
 
         // Long level
@@ -98,7 +106,8 @@ public class Levelselectscreen extends SuperScreen {
         Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
         Gdx.input.getY() > 200)
         {
-            game.font.draw(game.batch, "Three enemies to\nstart and a 10000\npoint win condition", position_x3+10, position_y);
+            game.layout.setText(game.font, "Three enemies to\nstart and a 10000\npoint win condition");
+            game.font.draw(game.batch, game.layout, position_x3+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 game.initial_number_of_enemies = 3;
                 game.winCondition = 10000;
@@ -108,8 +117,8 @@ public class Levelselectscreen extends SuperScreen {
             }    
         }
         else{
-            game.font.draw(game.batch, "Long", position_x3+100, Gdx.graphics.getHeight()/2);
-            
+            game.layout.setText(game.font, "Long");
+            game.font.draw(game.batch, game.layout, position_x3+position_x1/2-game.layout.width/2, half_y+game.layout.height/2); 
         }
 
         int center_x = Gdx.graphics.getWidth() /2 - menu.getWidth()/2;

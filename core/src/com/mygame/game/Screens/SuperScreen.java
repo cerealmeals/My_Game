@@ -119,10 +119,13 @@ public class SuperScreen implements Screen {
     }
 
     public void drawtextinfo(){
-        game.font.draw(game.batch, "Level: " + game.level, 0, Gdx.graphics.getHeight()-1);
+        game.layout.setText(game.font, "Level: " + game.level);
+        game.font.draw(game.batch, game.layout, 10, Gdx.graphics.getHeight()-1);
         String FormatedTime = String.format("%.2f", game.time);
-        game.font.draw(game.batch, "Time: " + FormatedTime, texture_Width*(game.mapWidth/2-3), Gdx.graphics.getHeight()-1);
-        game.font.draw(game.batch, "Score: " + game.player.getScore(), texture_Width*(game.mapWidth-4), Gdx.graphics.getHeight()-1);
+        game.layout.setText(game.font, "Time: " + FormatedTime);
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-1);
+        game.layout.setText(game.font, "Score: " + game.player.getScore());
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth())-game.layout.width-10, Gdx.graphics.getHeight()-1);
         
     }
 
