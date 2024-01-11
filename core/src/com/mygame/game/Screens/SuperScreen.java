@@ -90,10 +90,11 @@ public class SuperScreen implements Screen {
         public void execute();
     }
 
+    
     public class GameScreenCommand implements Command{
         public void execute(){
             if (Gdx.input.justTouched()) {
-			    game.setScreen(new GameScreen(game));
+			    game.setScreen(new Levelselectscreen(game));
 			    dispose();
 		    }
         }

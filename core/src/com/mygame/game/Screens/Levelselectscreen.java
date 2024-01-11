@@ -26,12 +26,90 @@ public class Levelselectscreen extends SuperScreen {
 
 		game.batch.begin();
 		
-        game.font.draw(game.batch, "SELECT A Level", (Gdx.graphics.getWidth()/4), Gdx.graphics.getHeight()-1);
+        game.font.draw(game.batch, "SELECT A Level", (Gdx.graphics.getWidth()/3)-10, Gdx.graphics.getHeight()-100);
     
         game.font.getData().setScale(2);
+        int position_x0 = 0;
+        int position_x1 = Gdx.graphics.getWidth()/4;
+        int position_x2 = Gdx.graphics.getWidth()*2/4;
+        int position_x3 = Gdx.graphics.getWidth()*3/4;
+        int position_y = Gdx.graphics.getHeight()*3/5;
 
-        for(int i = 0; i < 3; i++){
-        draw_level_option(i*Gdx.graphics.getWidth()/3, level, i);
+        if(Gdx.input.getX() > position_x0 && 
+        Gdx.input.getX() < position_x0 + position_x1 && 
+        Gdx.input.getY() < Gdx.graphics.getHeight() -100 && 
+        Gdx.input.getY() > 100)
+        {
+            game.font.draw(game.batch, "A starter level\nwith one enemy to\nstart and a 200\npoint win condition", position_x0+10, position_y);
+            if (Gdx.input.justTouched()) {
+                game.initial_number_of_enemies = 1;
+                game.winCondition = 200;
+                game.NewGame();
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }    
+        }
+        else{
+            game.font.draw(game.batch, "Tutorial", position_x0+100, Gdx.graphics.getHeight()/2);
+            
+        }
+
+        if(Gdx.input.getX() > position_x1 && 
+        Gdx.input.getX() < position_x1 + position_x1 && 
+        Gdx.input.getY() < Gdx.graphics.getHeight() -150 && 
+        Gdx.input.getY() > 150)
+        {
+            game.font.draw(game.batch, "Two enemies to \nstart and a 1000\npoint win condition", position_x1+10, position_y);
+            if (Gdx.input.justTouched()) {
+                game.initial_number_of_enemies = 2;
+                game.winCondition = 1000;
+                game.NewGame();
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }    
+        }
+        else{
+            game.font.draw(game.batch, "Quick", position_x1+100, Gdx.graphics.getHeight()/2);
+            
+        }
+
+        if(Gdx.input.getX() > position_x2 && 
+        Gdx.input.getX() < position_x2 + position_x1 && 
+        Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
+        Gdx.input.getY() > 200)
+        {
+            game.font.draw(game.batch, "Three enemies to\nstart and a 5000\npoint win condition", position_x2+10, position_y);
+            if (Gdx.input.justTouched()) {
+                game.initial_number_of_enemies = 3;
+                game.winCondition = 5000;
+                game.NewGame();
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }    
+        }
+        else{
+            game.font.draw(game.batch, "Medium", position_x2+100, Gdx.graphics.getHeight()/2);
+            
+        }
+
+        // Long level
+        if(Gdx.input.getX() > position_x3 && 
+        Gdx.input.getX() < position_x3 + position_x1 && 
+        Gdx.input.getY() < Gdx.graphics.getHeight() -200 && 
+        Gdx.input.getY() > 200)
+        {
+            game.font.draw(game.batch, "Three enemies to\nstart and a 10000\npoint win condition", position_x3+10, position_y);
+            if (Gdx.input.justTouched()) {
+                game.initial_number_of_enemies = 3;
+                game.winCondition = 10000;
+                game.NewGame();
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }    
+        }
+        else{
+            game.font.draw(game.batch, "Long", position_x3+100, Gdx.graphics.getHeight()/2);
+            
         }
 
         int center_x = Gdx.graphics.getWidth() /2 - menu.getWidth()/2;
@@ -43,10 +121,6 @@ public class Levelselectscreen extends SuperScreen {
 
         game.font.getData().setScale(game.scale);
         game.batch.end();
-    }
-
-    private void draw_level_option(int x, Level level, int i){
-
     }
 
     @Override

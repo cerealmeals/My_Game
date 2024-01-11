@@ -9,8 +9,8 @@ import java.util.Random;
  */
 public class RewardClient {
     private static RewardClient instance = null;
-    private final int mapHeight;
-    private final int mapWidth;
+    private int mapHeight;
+    private int mapWidth;
     private final List<Reward> rewards;
     private int number_of_rewards = 15;
     public int coalScore = 10;
@@ -193,5 +193,10 @@ public class RewardClient {
 
     public float getpunishmentChance(){
         return punishmentChance;
+    }
+
+    public void setMapdimensions(int width, int height){
+        mapHeight = height;
+        mapWidth = width;
     }
 }

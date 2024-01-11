@@ -45,6 +45,7 @@ public class GameLogic extends Game {
 	public void create () {
 		batch = new SpriteBatch(); 
 		font = new BitmapFont();
+		
 		font.getData().setScale(scale);
 		for(int i = 0; i < initial_number_of_enemies; i++){
             enemies.add(new Enemies(enemy_HP, grid));
@@ -67,21 +68,21 @@ public class GameLogic extends Game {
 	public void NewGame(){
 		PowerReset();
 		rewardClient.clear();
-		rewardClient.setNumRewards(initial_number_of_rewards);
 		mapHeight = initial_mapHeight;
 		mapWidth = (int)(1.5f*mapHeight);
 		grid = new Grid(mapHeight, mapWidth);
+		rewardClient.setMapdimensions(mapWidth, mapHeight);
+		rewardClient.setNumRewards(initial_number_of_rewards);
 		level = 1;
 		time = 0;
-		initial_number_of_enemies = 4;
 		resetEnemies();
-		EnemySpeed = 1;
+		EnemySpeed = 1f;
 		player = new Player();
 	}
 
 	private void PowerReset(){
 		rewardClient.setbonusRewardChance(0.1f);
-		rewardClient.setpunishmentChance(0.3f);
+		rewardClient.setpunishmentChance(0.2f);
 		rewardClient.coalScore = 10;
 		PlayerSpeed = 0.1f;
 		player.setFlameDamage(1);
