@@ -9,16 +9,16 @@ public class WinScreen extends SuperScreen {
 
     Texture New_game;
     Texture New_game_c;
-    Texture quit;
-    Texture quit_c;
+    Texture menu;
+    Texture menu_c;
 
     public WinScreen(GameLogic game) {
         super(game);
 
         New_game = new Texture("buttons/Large Buttons/Large Buttons/New Game Button.png");
         New_game_c = new Texture("buttons/Large Buttons/Colored Large Buttons/New Game col_Button.png");
-        quit = new Texture("buttons/Large Buttons/Large Buttons/Quit Button.png");
-        quit_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Quit col_Button.png");
+        menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
+        menu_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Menu col_Button.png");
     }
 
      @Override
@@ -29,22 +29,22 @@ public class WinScreen extends SuperScreen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 
+        int left_x = Gdx.graphics.getWidth() /4 - menu.getWidth()/2;
+        int right_x = Gdx.graphics.getWidth()*3/4 - menu.getWidth()/2;
+        int bottom_y = 0;
+
 		game.batch.begin();
 		game.layout.setText(game.font, "CONGRATULATION\n        YOU WIN\nWith a time of " + String.format("%.2f", game.time));
-        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()+(game.layout.height/2)-(Gdx.graphics.getHeight() -((quit.getHeight()*2)+50))/2);
-
-        int center_x = Gdx.graphics.getWidth() /2 - quit.getWidth()/2;
-        int New_game_y = quit.getHeight()+50;
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-10);
+        
+        //leaderboard
         
         
         //New_game button
-        draw_Button(New_game, New_game_c, center_x, New_game_y, new NewGameCommand());
+        draw_Button(New_game, New_game_c, left_x, bottom_y, new NewGameCommand());
 
-        //setting button
-
-        int quit_y = 0;
-        //quit button
-        draw_Button(quit, quit_c, center_x, quit_y, new QuitCommand());
+        //menu button
+        draw_Button(menu, menu_c, right_x, bottom_y, new MainMenuCommand());
 
         game.batch.end();
 
@@ -54,8 +54,8 @@ public class WinScreen extends SuperScreen {
     public void dispose() {
         New_game.dispose();
         New_game_c.dispose();
-        quit.dispose();
-        quit_c.dispose();
+        menu.dispose();
+        menu_c.dispose();
     }
 
 }
