@@ -37,6 +37,7 @@ public class GameLogic extends Game {
     int gameOver = 0; // Used as a boolean to see if the game is over
 	*/ 
 	public int level = 1;
+	public int levelSelect = 0;
     public int enemy_HP = 4;
     public int initial_number_of_enemies = 4;
     public int current_number_of_enemies = initial_number_of_enemies; // The default number of enemies
