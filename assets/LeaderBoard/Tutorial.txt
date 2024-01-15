@@ -1,2 +1,4 @@
-Sam 1.00
-Katarina 0.50
+Katarina
+0.50
+Sam
+1.00

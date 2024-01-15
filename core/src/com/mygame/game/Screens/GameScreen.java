@@ -318,7 +318,12 @@ public class GameScreen extends SuperScreen{
 
     private void WinCondition(){
         if(game.player.getScore() >= game.winCondition){
-            game.setScreen(new WinScreen(this.game));
+            try {
+                game.setScreen(new WinScreen(this.game));
+            }
+            catch(Exception e){
+                System.out.println("file not found");
+            }
             dispose();
         }
     }

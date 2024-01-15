@@ -1,6 +1,9 @@
 package com.mygame.game.Screens;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -17,11 +20,16 @@ public class WinScreen extends SuperScreen {
     String name;
     boolean save;
     File file;
+    List<String> names;
+    List<Float> scores;
+    Scanner sc;
 
-    public WinScreen(GameLogic game) {
+    public WinScreen(GameLogic game) throws Exception{
         super(game);
         save = true;
         name = "";
+        names = new ArrayList<>();
+        scores = new ArrayList<>();
         New_game = new Texture("buttons/Large Buttons/Large Buttons/New Game Button.png");
         New_game_c = new Texture("buttons/Large Buttons/Colored Large Buttons/New Game col_Button.png");
         menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
@@ -42,7 +50,11 @@ public class WinScreen extends SuperScreen {
             default:
                 break;
         }
-        
+        sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            names.add(sc.nextLine());
+            scores.add(Float.parseFloat(sc.nextLine()));
+        }
     }
 
     @Override
@@ -66,13 +78,23 @@ public class WinScreen extends SuperScreen {
         }
 
         // leaderboard
+
         game.layout.setText(game.font, "Enter your name then hit enter");
-        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-200);
-        
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-210);
+
         game.layout.setText(game.font, name);
-        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-300);
+        game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-260);
 
+        game.font.getData().setScale(2);
 
+        for(int i = 0; i < names.size(); i++){
+            game.layout.setText(game.font, names.get(i));
+            game.font.draw(game.batch, game.layout, Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()-300-(i*40));
+            game.layout.setText(game.font, String.valueOf(scores.get(i)));
+            game.font.draw(game.batch, game.layout, Gdx.graphics.getWidth()*3/4, Gdx.graphics.getHeight()-300-(i*40));
+        }
+
+        game.font.getData().setScale(game.scale);
 
         //New_game button
         draw_Button(New_game, New_game_c, left_x, bottom_y, new NewGameCommand());
@@ -87,6 +109,12 @@ public class WinScreen extends SuperScreen {
     private void setname(){
         if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
             save = false;
+            int i = 0;
+            for(; scores.get(i) < game.time; i++){
+            }
+            scores.add(i, game.time);
+            names.add(i, name);
+
         }
         else if(Gdx.input.isKeyJustPressed(Keys.Q)){
             name = name + "q";
