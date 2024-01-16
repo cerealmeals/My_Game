@@ -1,6 +1,7 @@
 package com.mygame.game.Screens;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -55,6 +56,7 @@ public class WinScreen extends SuperScreen {
             names.add(sc.nextLine());
             scores.add(Float.parseFloat(sc.nextLine()));
         }
+        sc.close();
     }
 
     @Override
@@ -75,11 +77,14 @@ public class WinScreen extends SuperScreen {
         
         if(save){
             setname();
+            if(name.length() == 1){
+                name = name.toUpperCase();
+            }
         }
 
         // leaderboard
 
-        game.layout.setText(game.font, "Enter your name then hit enter");
+        game.layout.setText(game.font, "Enter your name then hit enter to save");
         game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-210);
 
         game.layout.setText(game.font, name);
@@ -90,7 +95,7 @@ public class WinScreen extends SuperScreen {
         for(int i = 0; i < names.size(); i++){
             game.layout.setText(game.font, names.get(i));
             game.font.draw(game.batch, game.layout, Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()-300-(i*40));
-            game.layout.setText(game.font, String.valueOf(scores.get(i)));
+            game.layout.setText(game.font, String.format("%.2f", scores.get(i)));
             game.font.draw(game.batch, game.layout, Gdx.graphics.getWidth()*3/4, Gdx.graphics.getHeight()-300-(i*40));
         }
 
@@ -107,14 +112,26 @@ public class WinScreen extends SuperScreen {
     }
 
     private void setname(){
-        if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
+        if(Gdx.input.isKeyJustPressed(Keys.ENTER)&&(name!="")){
             save = false;
             int i = 0;
-            for(; scores.get(i) < game.time; i++){
+            for(; (i < scores.size())&&(scores.get(i) < game.time); i++){
             }
             scores.add(i, game.time);
             names.add(i, name);
-
+            try{
+                FileWriter writer = new FileWriter(file.getAbsolutePath());
+                writer.write("");
+                for(int j = 0; j < names.size();j++){
+                    writer.append(names.get(j)+"\n");
+                    writer.append(scores.get(j)+"\n");
+                }
+                writer.close();
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            
         }
         else if(Gdx.input.isKeyJustPressed(Keys.Q)){
             name = name + "q";

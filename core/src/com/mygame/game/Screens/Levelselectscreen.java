@@ -45,7 +45,7 @@ public class Levelselectscreen extends SuperScreen {
             game.font.draw(game.batch, game.layout, position_x0+position_x1/2-game.layout.width/2, half_y+game.layout.height/2);
             if (Gdx.input.justTouched()) {
                 game.initial_number_of_enemies = 1;
-                game.winCondition = 2;
+                game.winCondition = 200;
                 game.levelSelect = 0;
                 game.NewGame();
                 game.setScreen(new GameScreen(game));

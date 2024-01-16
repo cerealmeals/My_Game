@@ -112,7 +112,7 @@ public class SuperScreen implements Screen {
         public void execute(){
             if (Gdx.input.justTouched()) {
                 game.NewGame();
-			    game.setScreen(new MainMenuScreen(game));
+			    game.setScreen(new Levelselectscreen(game));
 			    dispose();
 		    }
         }
