@@ -31,7 +31,7 @@ public class WinScreen extends SuperScreen {
         name = "";
         names = new ArrayList<>();
         scores = new ArrayList<>();
-        New_game = new Texture("buttons/Large Buttons/Large Buttons/New Game Button.png");
+        New_game = new Texture("buttons/Large Buttons/Large Buttons/New game Button.png");
         New_game_c = new Texture("buttons/Large Buttons/Colored Large Buttons/New Game col_Button.png");
         menu = new Texture("buttons/Large Buttons/Large Buttons/Menu Button.png");
         menu_c = new Texture("buttons/Large Buttons/Colored Large Buttons/Menu col_Button.png");

@@ -1,0 +1,2 @@
+to build jar file ./gradlew desktop:dist
+

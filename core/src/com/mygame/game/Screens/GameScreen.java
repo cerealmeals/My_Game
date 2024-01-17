@@ -322,7 +322,7 @@ public class GameScreen extends SuperScreen{
                 game.setScreen(new WinScreen(this.game));
             }
             catch(Exception e){
-                System.out.println("file not found");
+                System.out.println(e.getMessage());
             }
             dispose();
         }
