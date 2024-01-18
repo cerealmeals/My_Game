@@ -27,7 +27,7 @@ public class PowerUpScreen extends SuperScreen {
 		game.batch.setProjectionMatrix(camera.combined);
 
 		game.batch.begin();
-        game.layout.setText(game.font, "SELECT A POWER UP");
+        game.layout.setText(game.font, "Select a Power Up");
         game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-100+game.layout.height/2);
     
         game.font.getData().setScale(2);

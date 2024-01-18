@@ -85,12 +85,12 @@ public class PowerUpClient {
         }
         if(power instanceof PunishmentChance){
             if(game.rewardClient.getpunishmentChance() <= 0.05f){
-                return false;
+                return true;
             }
         }
         if(power instanceof FlameDamage){
             if(game.player.getFlameDamage() >= game.enemy_HP){
-                return false;
+                return true;
             }
         }
         return false;

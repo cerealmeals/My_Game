@@ -7,7 +7,7 @@ public class RewardsUps extends PowerUp{
     public RewardsUps(GameLogic g) {
         super(g);
         Name = "More Stuff";
-        description = "Increase the number\nof spawns on\nthe map (not enemies)";
+        description = "Increase the amount\nof everything but\nenemies on the map";
     }
     
     @Override

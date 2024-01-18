@@ -26,7 +26,7 @@ public class Levelselectscreen extends SuperScreen {
 
 		game.batch.begin();
         game.font.getData().setScale(7);
-		game.layout.setText(game.font, "SELECT A Level");
+		game.layout.setText(game.font, "Select a Level");
         game.font.draw(game.batch, game.layout, (Gdx.graphics.getWidth()/2)-game.layout.width/2, Gdx.graphics.getHeight()-100+game.layout.height/2);
     
         game.font.getData().setScale(2);

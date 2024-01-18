@@ -150,7 +150,7 @@ public class GameScreen extends SuperScreen{
         for(int j = 0; j < game.player.explosions.size(); j++){
         
             if (game.time - game.player.explosions.get(j).explosion_time < game.player.explosiontime/2){
-                for(int i = 0; i < 8; i++){
+                for(int i = 0; i < 9; i++){
                 game.batch.draw(trail_yellow, (game.player.explosions.get(j).explosion_x[i])*texture_Width,
                     (game.player.explosions.get(j).explosion_y[i])*texture_Height, texture_Width, texture_Height);
                 }

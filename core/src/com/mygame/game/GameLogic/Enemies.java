@@ -110,7 +110,7 @@ public class Enemies {
         for(int k = 0; k < player.explosions.size(); k++){
         
             if (time - player.explosions.get(k).explosion_time < player.explosiontime/2){
-                for(int j = 0; j < 8; j++){
+                for(int j = 0; j < 9; j++){
                     if(ypos == player.explosions.get(k).explosion_y[j] && xpos == player.explosions.get(k).explosion_x[j]){
                         // if flames are there take damage.
                         health -= player.getFlameDamage();

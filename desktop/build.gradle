@@ -1,8 +1,9 @@
+plugins { id 'org.beryx.runtime' version '1.8.4' }
 sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../assets"]
 
-project.ext.mainClassName = "com.mygame.game.DesktopLauncher"
+mainClassName = "com.mygame.game.DesktopLauncher"
 project.ext.assetsDir = new File("../assets")
 
 import org.gradle.internal.os.OperatingSystem
